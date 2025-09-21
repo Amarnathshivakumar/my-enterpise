@@ -1,17 +1,24 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { TestService } from './test.service';
 import { CreateUserDto } from './create-user.dto';
-import { registers_test } from '@prisma/client';
 
 @Controller('test')
 export class TestController {
   constructor(private readonly testService: TestService) {}
+  @Get('db/check')
+  async checkDB1() {
+    return await this.testService.testDB1Connection();
+  }
   @Get('users')
-  async getUsers(): Promise<registers_test[]> {
-    return this.testService.findAll();
+  async getUsers() {
+    return await this.testService.findAll();
   }
   @Post('users')
-  async createUser(@Body() dto: CreateUserDto): Promise<registers_test> {
-    return this.testService.create(dto);
+  async createUser(@Body() dto: CreateUserDto) {
+    return await this.testService.create(dto);
+  }
+  @Get('user/:id')
+  async getUserById(@Param('id') id: string) {
+    return await this.testService.findOneById(Number(id));
   }
 }
