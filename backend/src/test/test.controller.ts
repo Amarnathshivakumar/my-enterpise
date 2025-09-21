@@ -5,20 +5,24 @@ import { CreateUserDto } from './create-user.dto';
 @Controller('test')
 export class TestController {
   constructor(private readonly testService: TestService) {}
-  @Get('db/check')
-  async checkDB1() {
-    return await this.testService.testDB1Connection();
+  @Get('/')
+  async checkDB() {
+    return await this.testService.DBstatus();
   }
-  @Get('users')
+  @Get('extra/')
+  async checkDB2() {
+    return await this.testService.DBstatus2();
+  }
+  @Get('extra/user/:id')
+  async getUserById(@Param('id') id: string) {
+    return await this.testService.findOneById(Number(id));
+  }
+  @Get('extra/users')
   async getUsers() {
     return await this.testService.findAll();
   }
-  @Post('users')
+  @Post('extra/users')
   async createUser(@Body() dto: CreateUserDto) {
     return await this.testService.create(dto);
-  }
-  @Get('user/:id')
-  async getUserById(@Param('id') id: string) {
-    return await this.testService.findOneById(Number(id));
   }
 }

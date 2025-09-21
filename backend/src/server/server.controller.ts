@@ -10,6 +10,7 @@ export class ServerController {
       runtime: 'Node.js',
       packageManager: 'npm',
       language: 'TypeScript',
+      ORM: 'Prisma',
       timestamp: new Date().toISOString(),
     };
   }

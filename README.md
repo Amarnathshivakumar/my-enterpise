@@ -39,3 +39,4 @@ El objetivo es ofrecer un sistema tipo **ERP/CRM** en el que los usuarios puedan
 - NESTJS
 - ESLINT
 - PHPMYADMIN SQL FOR DB
+- PRISMA
