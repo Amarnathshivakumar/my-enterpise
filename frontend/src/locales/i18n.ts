@@ -1,31 +1,40 @@
+/**
+ * =====================================================
+ *  NAME    : i18n.ts
+ *  DATE      : 20/08/2025
+ *  DATE_MODIFY       : 21/09/25
+ *  DESCRIPTION: TRANSLATION SETUP
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import i18next, { type InitOptions } from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend, { type HttpBackendOptions } from "i18next-http-backend";
-
 import en from "./en/translations.json";
 import es from "./es/translations.json";
 import { isProduction } from "@/lib/utils";
 
-type TranslationKeys = typeof en; // Assuming `en` and `es` have the same structure
-
+// CONFIGURATION
+type TranslationKeys = typeof es;
 const translations: Record<string, { translations: TranslationKeys }> = {
-  en: {
-    translations: en,
-  },
   es: {
     translations: es,
+  },
+  en: {
+    translations: en,
   },
 };
 
 const config: InitOptions<HttpBackendOptions> = {
-  supportedLngs: ["en", "es"],
+  supportedLngs: ["es", "en"],
   ns: ["translations"],
   defaultNS: "translations",
-  fallbackLng: "en",
+  fallbackLng: "es",
   debug: !isProduction,
   interpolation: {
-    escapeValue: false, // not needed for react as it escapes by default
+    escapeValue: false,
   },
   resources: translations,
   backend: {
@@ -33,15 +42,11 @@ const config: InitOptions<HttpBackendOptions> = {
   },
 };
 
+// INITIALIZATION DETECT LANGUAGE
 const i18n = i18next
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // detect user language
   .use(LanguageDetector)
-  // backend plugin
   .use(Backend)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init(config);
 
 export default i18n;

@@ -1,16 +1,20 @@
+/**
+ * =====================================================
+ *  NAME    : utils.ts
+ *  DATE      : 20/08/2025
+ *  DATE_MODIFY       : 21/09/25
+ *  DESCRIPTION: UTILS FUNCTIONS
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-/**
- * A utility function that merges multiple class names into one.
- */
+// FUNCTIONS
 export function cn(...inputs: Array<ClassValue>): string {
   return twMerge(clsx(inputs));
 }
 
-/**
- * Checks if the current environment is production.
- *
- * @returns {boolean} True if the current environment is production, false otherwise.
- */
+// ENVIRONMENT
 export const isProduction = import.meta.env.MODE === "production";

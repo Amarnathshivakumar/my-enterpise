@@ -2,42 +2,6 @@ import { useState, useEffect, useRef } from "react";
 
 type LocalStorageValue<T> = T | null;
 
-/**
- * A hook for persisting state in localStorage with type safety
- *
- * @example
- * ```tsx
- * // Store and retrieve user preferences
- * const UserSettings = () => {
- *   const [theme, setTheme] = useLocalStorage('theme', 'light');
- *   const [fontSize, setFontSize] = useLocalStorage('fontSize', 16);
- *
- *   return (
- *     <div>
- *       <div>
- *         <label>Theme: </label>
- *         <select
- *           value={theme}
- *           onChange={(e) => setTheme(e.target.value)}
- *         >
- *           <option value="light">Light</option>
- *           <option value="dark">Dark</option>
- *         </select>
- *       </div>
- *
- *       <div>
- *         <label>Font Size: </label>
- *         <input
- *           type="number"
- *           value={fontSize}
- *           onChange={(e) => setFontSize(Number(e.target.value))}
- *         />
- *       </div>
- *     </div>
- *   );
- * };
- * ```
- */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T
