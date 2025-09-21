@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "init": "npm install --prefix backend && pnpm install --prefix frontend",
-    "stack": "concurrently \"pnpm run dev --prefix frontend\" \"npm run start:dev --prefix backend\"",
+    "init": "pnpm install --prefix frontend && npm install --prefix backend",
+    "stack": "concurrently \"pnpm --prefix frontend run dev\" \"npm --prefix backend run start:dev\"",
     "build": "concurrently \"pnpm run build --prefix frontend\" \"npm run build --prefix backend\""
   },
   "devDependencies": {
