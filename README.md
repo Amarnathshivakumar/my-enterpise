@@ -29,3 +29,13 @@ El objetivo es ofrecer un sistema tipo **ERP/CRM** en el que los usuarios puedan
 - **Productos**: catálogo, variantes y precios.
 - **Recursos Humanos**: empleados, nómina y asistencia.
 - **Logística**: envíos, rutas y devoluciones.
+
+
+## Tecnologias
+
+- TS
+- REACT
+- VITE
+- NESTJS
+- ESLINT
+- PHPMYADMIN SQL FOR DB
