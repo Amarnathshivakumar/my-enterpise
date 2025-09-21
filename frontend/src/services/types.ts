@@ -1,3 +1,13 @@
+/**
+ * =====================================================
+ *  NAME    : types.ts
+ *  DATE      : 20/08/2025
+ *  DATE_MODIFY       : 21/09/25
+ *  DESCRIPTION: STYPES FOR SERVICES
+ * =====================================================
+ */
+
+// STATUS CODE TYPE
 type StatusCode =
   | `${number}`
   // 1xx Informational - Request received, continuing process
@@ -72,6 +82,7 @@ type StatusCode =
  * primitive value. The type of `T` will be determined by the specific API endpoint being called
  */
 
+// EXPORT TYPE FOR BASE RESPONSE
 export type BaseResponse<T> = {
   response: {
     response_code: StatusCode;

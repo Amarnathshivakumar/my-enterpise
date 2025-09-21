@@ -1,32 +1,26 @@
-import { api } from "@/services";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {
-  useSelector as useReduxSelector,
-  type TypedUseSelectorHook,
-} from "react-redux";
-
-// ======== Slices ======== //
-import themeSlice from "@/store/slice/theme.slice";
-
 /**
- * Combine all slices into one
+ * =====================================================
+ *  NAME    : index.tsx
+ *  DATE      : 20/08/2025
+ *  DATE_MODIFY       : 21/09/25
+ *  DESCRIPTION: STORE FOR REDUX TOOLKIT
+ * =====================================================
  */
-const rootReducer = combineReducers({
-  // add your reducers here ..
-  theme: themeSlice,
 
-  //App service reducer
-  [api.reducerPath]: api.reducer,
-});
+// DEPENDENCIES
+import { configureStore } from "@reduxjs/toolkit";
+import { api } from "@/services";
 
+// STORE
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    [api.reducerPath]: api.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
-  devTools: process.env.NODE_ENV !== "production",
 });
 
-export default store;
+// DISPATCH & STATE TYPES
 export type RootState = ReturnType<typeof store.getState>;
-
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
+export type AppDispatch = typeof store.dispatch;
+export default store;
