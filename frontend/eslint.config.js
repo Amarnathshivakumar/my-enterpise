@@ -1,3 +1,4 @@
+// PROYECT LINTER CONFIGURATION
 import { fixupPluginRules } from "@eslint/compat";
 import eslintJS from "@eslint/js";
 import tsParser from "@typescript-eslint/parser";
@@ -12,10 +13,8 @@ import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 import typescriptEslint from "typescript-eslint";
 import tailwind from "eslint-plugin-tailwindcss";
-
 const patchedReactHooksPlugin = fixupPluginRules(eslintPluginReactHooks);
 const patchedImportPlugin = fixupPluginRules(eslintPluginImport);
-
 const baseESLintConfig = {
   name: "eslint",
   extends: [eslintJS.configs.recommended],
@@ -35,7 +34,6 @@ const baseESLintConfig = {
     camelcase: "error",
   },
 };
-
 const typescriptConfig = {
   name: "typescript",
   extends: [...typescriptEslint.configs.recommendedTypeChecked],
@@ -93,7 +91,6 @@ const typescriptConfig = {
     },
   },
 };
-
 const reactConfig = {
   name: "react",
   extends: [eslintPluginReact.configs.flat["jsx-runtime"]],
@@ -130,7 +127,6 @@ const reactConfig = {
     ],
   },
 };
-
 const jsxA11yConfig = {
   name: "jsxA11y",
   ...jsxA11yPlugin.flatConfigs.recommended,
@@ -146,7 +142,6 @@ const jsxA11yConfig = {
     "jsx-a11y/role-supports-aria-props": "error",
   },
 };
-
 const unicornConfig = {
   name: "unicorn",
   plugins: {
@@ -183,7 +178,6 @@ const unicornConfig = {
     ],
   },
 };
-
 const tailwindConfig = {
   name: "tailwind-config",
   plugins: {
@@ -191,7 +185,6 @@ const tailwindConfig = {
   },
   extends: [...tailwind.configs["flat/recommended"]],
 };
-
 const eslintConfig = typescriptEslint.config(
   baseESLintConfig,
   typescriptConfig,
@@ -201,9 +194,7 @@ const eslintConfig = typescriptEslint.config(
   unicornConfig,
   tailwindConfig
 );
-
 eslintConfig.map((config) => {
   config.files = ["src/**/*.ts", "src/**/*.tsx"];
 });
-
 export default eslintConfig;

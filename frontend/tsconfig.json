@@ -1,4 +1,5 @@
 {
+  // FRONTEND TS CONFIG
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

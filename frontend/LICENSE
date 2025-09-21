@@ -1,21 +1,32 @@
-MIT License
+Chundru Teja Public Source License 1.0 (CTPSL-1.0)
 
 Copyright (c) 2024 Chundru Teja
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+All rights reserved.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. VISIBILITY
+   You are allowed to view, inspect, and read the source code of this software ("Software").
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. CONTRIBUTIONS AND FEEDBACK
+   You may submit contributions, improvements, suggestions, or report issues to the development team.
+   The development team may, at its discretion, incorporate any submitted contributions.
+
+3. RESTRICTIONS
+   You may NOT:
+   a) Copy, duplicate, or replicate the Software for commercial purposes.
+   b) Sell, sublicense, redistribute, or distribute the Software in any form.
+   c) Modify or create derivative works for commercial exploitation.
+   d) Claim ownership of any portion of the Software.
+   e) Use the Software to compete with the original project or to circumvent these restrictions.
+
+4. OWNERSHIP
+   All intellectual property rights, copyrights, trademarks, and other rights are exclusively
+   held by the original development team of this project (Chundru Teja and collaborators).
+
+5. DISCLAIMER
+   The Software is provided "AS IS", without warranty of any kind, express or implied, including
+   but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement.
+   In no event shall the authors or copyright holders be liable for any claim, damages, or other liability arising
+   from the use or inability to use the Software.
+
+By accessing or using the Software, you agree to comply with the terms of this license.

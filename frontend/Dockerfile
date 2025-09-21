@@ -1,12 +1,11 @@
-# build stage
+# BUILD STAGE
 FROM node:20 AS builder
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN npm install -g pnpm && pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run build
-
-# production stage
+# PRODUCTION STAGE
 FROM nginx:stable AS production
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
