@@ -8,10 +8,11 @@
 // DEPENDENCIES
 import { Module } from '@nestjs/common';
 import { ServerModule } from './server/server.module';
+import { TestModule } from './test/test.module';
 
 // MODULES
 @Module({
-  imports: [ServerModule],
+  imports: [ServerModule, TestModule],
 })
   
 export class AppModule {}

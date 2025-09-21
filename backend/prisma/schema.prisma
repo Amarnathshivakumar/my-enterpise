@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  id            Int        @id @default(autoincrement())
+  username      String     @unique(map: "username") @db.VarChar(50)
+  email         String     @unique(map: "email") @db.VarChar(100)
+  password_hash String     @db.VarChar(255)
+  is_active     Boolean?   @default(true)
+  created_at    DateTime?  @default(now()) @db.Timestamp(0)
+  profiles      profiles[]
+}
+
+model articles {
+  id           Int            @id @default(autoincrement())
+  supplier_id  Int?
+  name         String         @db.VarChar(100)
+  description  String?        @db.Text
+  price        Decimal        @db.Decimal(10, 2)
+  stock        Int?           @default(0)
+  is_active    Boolean?       @default(true)
+  created_at   DateTime?      @default(now()) @db.Timestamp(0)
+  suppliers    suppliers?     @relation(fields: [supplier_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "articles_ibfk_1")
+  sale_details sale_details[]
+
+  @@index([supplier_id], map: "supplier_id")
+}
+
+model direct_clients {
+  id         Int       @id @default(autoincrement())
+  full_name  String    @db.VarChar(100)
+  email      String?   @db.VarChar(100)
+  phone      String?   @db.VarChar(20)
+  address    String?   @db.Text
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  sales      sales[]
+}
+
+model profiles {
+  id         Int       @id @default(autoincrement())
+  account_id Int
+  full_name  String?   @db.VarChar(100)
+  address    String?   @db.Text
+  phone      String?   @db.VarChar(20)
+  birthdate  DateTime? @db.Date
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  accounts   accounts  @relation(fields: [account_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "profiles_ibfk_1")
+
+  @@index([account_id], map: "account_id")
+}
+
+model registers_test {
+  id_register      Int                    @id @default(autoincrement())
+  nombre           String?                @db.VarChar(50)
+  apellido_paterno String?                @db.VarChar(50)
+  apellido_materno String?                @db.VarChar(50)
+  numero           String?                @db.VarChar(20)
+  correo           String?                @db.VarChar(100)
+  genero           registers_test_genero?
+  edad             Int?
+  dinero_en_cuenta Decimal?               @db.Decimal(15, 2)
+  fecha_registro   DateTime?              @default(now()) @db.Timestamp(0)
+}
+
+model sale_details {
+  id         Int      @id @default(autoincrement())
+  sale_id    Int
+  article_id Int
+  quantity   Int
+  unit_price Decimal  @db.Decimal(10, 2)
+  sales      sales    @relation(fields: [sale_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sale_details_ibfk_1")
+  articles   articles @relation(fields: [article_id], references: [id], onUpdate: Restrict, map: "sale_details_ibfk_2")
+
+  @@index([article_id], map: "article_id")
+  @@index([sale_id], map: "sale_id")
+}
+
+model sales {
+  id             Int            @id @default(autoincrement())
+  client_id      Int
+  sale_date      DateTime?      @default(now()) @db.DateTime(0)
+  status         sales_status?  @default(pending)
+  total          Decimal?       @default(0.00) @db.Decimal(10, 2)
+  sale_details   sale_details[]
+  direct_clients direct_clients @relation(fields: [client_id], references: [id], onUpdate: Restrict, map: "sales_ibfk_1")
+
+  @@index([client_id], map: "client_id")
+}
+
+model suppliers {
+  id           Int        @id @default(autoincrement())
+  name         String     @db.VarChar(100)
+  contact_name String?    @db.VarChar(100)
+  email        String?    @db.VarChar(100)
+  phone        String?    @db.VarChar(20)
+  address      String?    @db.Text
+  created_at   DateTime?  @default(now()) @db.Timestamp(0)
+  articles     articles[]
+}
+
+enum sales_status {
+  pending
+  shipped
+  completed
+  cancelled
+}
+
+enum registers_test_genero {
+  M
+  F
+  O
+}
