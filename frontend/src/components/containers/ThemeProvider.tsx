@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : ThemeProvider.tsx
  *  DATE      : 20/08/2025
- *  DATE_MODIFY       : 22/09/2025
+ *  DATE_MODIFY       : 23/09/2025
  *  DESCRIPTION: THEME PROVIDER FOR DARK MODE AND LIGHT MODE
  * =====================================================
  */
@@ -22,7 +22,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     let savedTheme = localStorage.getItem("theme") as Theme | null;
     if (!savedTheme) {
-      savedTheme = "light"; // fallback
+      savedTheme = "light";
       localStorage.setItem("theme", savedTheme);
     }
     dispatch(setTheme(savedTheme));

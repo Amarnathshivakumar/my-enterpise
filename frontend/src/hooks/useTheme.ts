@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : useTheme.tsx
  *  DATE      : 20/08/2025
- *  DATE_MODIFY       : 22/09/2025
+ *  DATE_MODIFY       : 23/09/2025
  *  DESCRIPTION: HOOK TO MANAGE THEME USING REDUX
  * =====================================================
  */
