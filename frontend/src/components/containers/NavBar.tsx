@@ -21,6 +21,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Github, Twitter, CircleCheckBig } from "lucide-react";
+
 
 // ITEMS
 const documentationItems = [
@@ -100,7 +102,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
             />
           </div>
           <NavigationMenu>
-            <NavigationMenuList className="flex gap-6">
+            <NavigationMenuList className="flex gap-5 items-center">
               <NavigationMenuItem>
                 <NavigationMenuLink
                   asChild
@@ -148,6 +150,31 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                     ))}
                   </ul>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <a
+                  href="https://github.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white"
+                >
+                  <Github size={20} />
+                </a>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <a
+                  href="https://x.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white"
+                >
+                  <Twitter size={20} />
+                </a>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <a href="#" className="flex items-center gap-2 text-white">
+                  <CircleCheckBig size={20} />
+                </a>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
