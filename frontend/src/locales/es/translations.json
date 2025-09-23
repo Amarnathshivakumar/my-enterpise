@@ -1,4 +1,9 @@
 {
+  "navbar": {
+    "home": "Inicio",
+    "dom": "Documentacion",
+    "src": "Recursos"
+  },
   "home": {
     "get_started": "Empezar",
     "theme": "Tema"

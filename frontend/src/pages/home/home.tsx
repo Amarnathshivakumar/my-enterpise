@@ -12,6 +12,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import NavBar from "@/components/containers/NavBar";
 import { useTheme } from "@/hooks/useTheme";
+import backgroundImage from "/img/bg-web.jpg";
 
 // HOME PAGE
 const Home: React.FC = () => {
@@ -22,8 +23,13 @@ const Home: React.FC = () => {
   const { theme, toggle } = useTheme();
   return (
     <>
-      <NavBar />
+      <NavBar t={t} />
       <main className="flex h-screen w-screen flex-col items-center justify-center   p-6">
+        <img
+          src={backgroundImage}
+          alt="Background"
+          className="fixed top-0 left-0 w-full h-full object-cover -z-10"
+        />
         <h1 className="mb-8 text-center text-6xl font-light">
           {t("home.get_started")}
         </h1>

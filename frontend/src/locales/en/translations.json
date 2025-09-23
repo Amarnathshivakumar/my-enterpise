@@ -1,4 +1,9 @@
 {
+  "navbar": {
+    "home": "Home",
+    "dom": "Documentation",
+    "src": "Resources"
+  },
   "home": {
     "get_started": "Get Started",
     "theme": "Theme"

@@ -61,6 +61,10 @@ const resourcesItems = [
 ];
 
 // LOGIC
+type NavBarProps = {
+  t: (key: string) => string;
+};
+
 function ListItem({
   title,
   children,
@@ -82,7 +86,7 @@ function ListItem({
 }
 
 // COMPONENT
-const NavBar = () => {
+const NavBar: React.FC<NavBarProps> = ({ t }) => {
   const { theme } = useTheme();
   return (
     <header className="w-full px-4 z-50">
@@ -90,7 +94,7 @@ const NavBar = () => {
         <div className="flex w-full max-w-6xl justify-between items-center py-2">
           <div className="flex-shrink-0">
             <img
-              src={theme === "dark" ? logoDark : logoLight}
+              src={theme === "dark" ? logoLight : logoDark}
               alt="Logo"
               className="max-w-40 object-contain"
             />
@@ -102,11 +106,11 @@ const NavBar = () => {
                   asChild
                   className={navigationMenuTriggerStyle()}
                 >
-                  <a href="/">Home</a>
+                  <a href="/">{t("navbar.home")}</a>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
+                <NavigationMenuTrigger>{t("navbar.dom")}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[300px] gap-2">
                     {documentationItems.map((item) => (
@@ -118,7 +122,7 @@ const NavBar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
+                <NavigationMenuTrigger>{t("navbar.src")}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
