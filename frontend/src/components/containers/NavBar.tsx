@@ -9,9 +9,7 @@
 
 // DEPENDENCIES
 import React from "react";
-import logoDark from "/img/logo-d-nobg.png";
 import logoLight from "/img/logo-w-nobg.png";
-import { useTheme } from "@/hooks/useTheme";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -22,7 +20,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Github, Twitter, CircleCheckBig } from "lucide-react";
-
 
 // ITEMS
 const documentationItems = [
@@ -89,30 +86,31 @@ function ListItem({
 
 // COMPONENT
 const NavBar: React.FC<NavBarProps> = ({ t }) => {
-  const { theme } = useTheme();
   return (
     <header className="w-full px-4 z-50">
       <div className="flex justify-center w-full">
         <div className="flex w-full max-w-6xl justify-between items-center py-2">
           <div className="flex-shrink-0">
             <img
-              src={theme === "dark" ? logoLight : logoDark}
+              src={logoLight}
               alt="Logo"
               className="max-w-40 object-contain"
             />
           </div>
           <NavigationMenu>
-            <NavigationMenuList className="flex gap-5 items-center">
+            <NavigationMenuList className="flex gap-3 items-end">
               <NavigationMenuItem>
                 <NavigationMenuLink
                   asChild
-                  className={navigationMenuTriggerStyle()}
+                  className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-transparent font-[Montserrat] text-[20px] font-bold uppercase`}
                 >
                   <a href="/">{t("navbar.home")}</a>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>{t("navbar.dom")}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-transparent font-[Montserrat] text-[20px] font-bold uppercase">
+                  {t("navbar.dom")}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[300px] gap-2">
                     {documentationItems.map((item) => (
@@ -124,13 +122,15 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>{t("navbar.src")}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-transparent font-[Montserrat] text-[20px] font-bold uppercase">
+                  {t("navbar.src")}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <ul className="grid w-[300px] gap-2">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
-                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md p-6 no-underline outline-hidden select-none focus:shadow-md"
                           href="/resources"
                         >
                           <div className="mt-4 mb-2 text-lg font-medium">
@@ -156,9 +156,9 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   href="https://github.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white"
+                  className="flex items-center text-white"
                 >
-                  <Github size={20} />
+                  <Github size={40} />
                 </a>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -166,14 +166,14 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   href="https://x.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white"
+                  className="flex items-center text-white"
                 >
-                  <Twitter size={20} />
+                  <Twitter size={40} />
                 </a>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <a href="#" className="flex items-center gap-2 text-white">
-                  <CircleCheckBig size={20} />
+                <a href="#" className="flex items-center text-white">
+                  <CircleCheckBig size={40} />
                 </a>
               </NavigationMenuItem>
             </NavigationMenuList>
