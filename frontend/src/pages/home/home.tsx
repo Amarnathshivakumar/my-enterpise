@@ -40,7 +40,7 @@ const Home: React.FC = () => {
               English
             </button>
             <button
-              className="rounded border border-white px-4 py-2 font-medium hover:bg-white hover:text-slate-900"
+              className="rounded border-2 px-4 py-2 font-medium"
               onClick={() => changeLanguage("es")}
             >
               Español
