@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   const changeLanguage = async (lng: string) => {
     await i18n.changeLanguage(lng);
   };
-  const { theme } = useTheme();
+  const { theme, toggle } = useTheme();
   return (
     <>
       <NavBar />
@@ -48,6 +48,9 @@ const Home: React.FC = () => {
               Español
             </button>
           </div>
+          <button onClick={toggle} className="px-4 py-2 rounded bg-accent">
+            Switch to {theme === "light" ? "Dark" : "Light"} Mode
+          </button>
         </div>
       </main>
     </>
