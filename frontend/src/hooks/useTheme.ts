@@ -18,8 +18,8 @@ export const useTheme = () => {
   const dispatch = useDispatch<AppDispatch>();
   const theme = useSelector((state: RootState) => state.theme.current);
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.classList.toggle("light", theme === "light");
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
   }, [theme]);
   const toggle = () => {
     const newTheme: Theme = theme === "light" ? "dark" : "light";
@@ -30,5 +30,5 @@ export const useTheme = () => {
     dispatch(setTheme(newTheme));
     localStorage.setItem("theme", newTheme);
   };
-  return { theme, toggle, set};
+  return { theme, toggle, set };
 };

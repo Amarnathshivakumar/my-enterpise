@@ -20,10 +20,12 @@ interface ThemeProviderProps {
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    const savedTheme = (localStorage.getItem("theme") as Theme) || "light";
+    let savedTheme = localStorage.getItem("theme") as Theme | null;
+    if (!savedTheme) {
+      savedTheme = "light"; // fallback
+      localStorage.setItem("theme", savedTheme);
+    }
     dispatch(setTheme(savedTheme));
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    document.documentElement.classList.toggle("light", savedTheme === "light");
   }, [dispatch]);
   return <>{children}</>;
 };
