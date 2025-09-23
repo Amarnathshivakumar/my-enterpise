@@ -23,13 +23,20 @@ const Home: React.FC = () => {
   const { theme, toggle } = useTheme();
   return (
     <>
+      {/* NAVBAR */}
       <NavBar t={t} />
-      <main className="flex h-screen w-screen flex-col items-center justify-center   p-6">
-        <img
-          src={backgroundImage}
-          alt="Background"
-          className="fixed top-0 left-0 w-full h-full object-cover -z-10"
-        />
+      {/* MAIN CONTENT */}
+      <main className="flex flex-col items-center justify-center text-white p-6 max-w-screen max-h-screen min-h-screen">
+        {/* BACKGROUND */}
+        <div className="fixed top-0 left-0 w-full h-full -z-10">
+          <img
+            src={backgroundImage}
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
+        </div>
+        {/* WELCOME CONTENT */}
         <h1 className="mb-8 text-center text-6xl font-light">
           {t("home.get_started")}
         </h1>
@@ -42,7 +49,7 @@ const Home: React.FC = () => {
           <p className="text-lg">Select language:</p>
           <div className="flex gap-4">
             <button
-              className="rounded bg-fuchsia-500 px-4 py-2 font-medium hover:bg-fuchsia-600"
+              className="rounded bg-accent px-4 py-2 font-medium text-black"
               onClick={() => changeLanguage("en")}
             >
               English
@@ -54,7 +61,10 @@ const Home: React.FC = () => {
               Español
             </button>
           </div>
-          <button onClick={toggle} className="px-4 py-2 rounded bg-accent">
+          <button
+            onClick={toggle}
+            className="px-4 py-2 rounded bg-accent text-black"
+          >
             Switch to {theme === "light" ? "Dark" : "Light"} Mode
           </button>
         </div>

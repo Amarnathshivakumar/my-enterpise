@@ -98,17 +98,17 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
             />
           </div>
           <NavigationMenu>
-            <NavigationMenuList className="flex gap-3 items-end">
+            <NavigationMenuList className="flex gap-2 items-end">
               <NavigationMenuItem>
                 <NavigationMenuLink
                   asChild
-                  className={`${navigationMenuTriggerStyle()} bg-transparent text-white hover:bg-transparent font-[Montserrat] text-[20px] font-bold uppercase`}
+                  className={`${navigationMenuTriggerStyle()} !bg-transparent !text-white font-[Montserrat] text-[20px] !font-bold uppercase !hover:bg-transparent !focus:bg-transparent !h-0 !p-0`}
                 >
                   <a href="/">{t("navbar.home")}</a>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-transparent font-[Montserrat] text-[20px] font-bold uppercase">
+                <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[20px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0">
                   {t("navbar.dom")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -122,7 +122,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-white hover:bg-transparent font-[Montserrat] text-[20px] font-bold uppercase">
+                <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[20px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0">
                   {t("navbar.src")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
