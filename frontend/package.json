@@ -30,6 +30,7 @@
     "docker:run": "docker run -p 8080:80 react-vite-starter"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
     "@reduxjs/toolkit": "^2.2.7",
     "@shadcn/ui": "^0.0.4",
     "@testing-library/jest-dom": "^6.5.0",

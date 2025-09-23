@@ -10,7 +10,7 @@
 // DEPENDENCIES
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setTheme, Theme } from "@/store/themeState";
+import { setTheme, Theme } from "@/store/tasks/themeState";
 import { AppDispatch } from "@/store";
 
 // THEME PROVIDER COMPONENT

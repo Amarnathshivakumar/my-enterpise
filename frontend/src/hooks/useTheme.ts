@@ -11,7 +11,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "@/store";
-import { Theme, setTheme } from "@/store/themeState";
+import { Theme, setTheme } from "@/store/tasks/themeState";
 
 // HOOK
 export const useTheme = () => {
@@ -30,9 +30,5 @@ export const useTheme = () => {
     dispatch(setTheme(newTheme));
     localStorage.setItem("theme", newTheme);
   };
-  const get = (): Theme => {
-    return theme;
-  };
-
-  return { theme, toggle, set, get };
+  return { theme, toggle, set};
 };

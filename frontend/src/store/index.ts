@@ -11,8 +11,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { api } from "@/services";
 
-// GLOBAL STATE
-import themeReducer from "./themeState";
+// SLICES
+import themeReducer from "./tasks/themeState";
 
 // STORE
 const store = configureStore({

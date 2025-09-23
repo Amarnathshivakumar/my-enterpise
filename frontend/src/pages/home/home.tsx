@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   const changeLanguage = async (lng: string) => {
     await i18n.changeLanguage(lng);
   };
-  const { get } = useTheme();
+  const { theme } = useTheme();
   return (
     <>
       <NavBar />
@@ -28,7 +28,7 @@ const Home: React.FC = () => {
           {t("home.get_started")}
         </h1>
         <div className="text-center">
-          <p>Theme: {get()}</p>
+          <p>Theme: {theme}</p>
         </div>
         <div className="flex flex-col items-center gap-4">
           <p className="text-lg">Select language:</p>

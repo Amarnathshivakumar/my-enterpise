@@ -3,7 +3,7 @@
  *  NAME    : themeState.tsx
  *  DATE      : 22/09/2025
  *  DATE_MODIFY       : 22/09/2025
- *  DESCRIPTION: THEME STATE MANAGEMENT USING REDUX TOOLKIT
+ *  DESCRIPTION: THEME SLICE MANAGEMENT USING REDUX TOOLKIT
  * =====================================================
  */
 
