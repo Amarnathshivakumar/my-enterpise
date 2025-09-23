@@ -28,7 +28,9 @@ const Home: React.FC = () => {
           {t("home.get_started")}
         </h1>
         <div className="text-center">
-          <p>Theme: {theme}</p>
+          <p>
+            {t("home.theme")} {theme}
+          </p>
         </div>
         <div className="flex flex-col items-center gap-4">
           <p className="text-lg">Select language:</p>

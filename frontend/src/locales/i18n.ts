@@ -26,7 +26,6 @@ const translations: Record<string, { translations: TranslationKeys }> = {
     translations: en,
   },
 };
-
 const config: InitOptions<HttpBackendOptions> = {
   supportedLngs: ["es", "en"],
   ns: ["translations"],
@@ -48,5 +47,4 @@ const i18n = i18next
   .use(LanguageDetector)
   .use(Backend)
   .init(config);
-
 export default i18n;

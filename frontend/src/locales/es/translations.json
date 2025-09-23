@@ -1,5 +1,6 @@
 {
   "home": {
-    "get_started": "Empezar"
+    "get_started": "Empezar",
+    "theme": "Tema"
   }
 }
