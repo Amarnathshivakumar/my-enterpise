@@ -25,6 +25,9 @@
     "dom": "Documentation",
     "src": "Resources"
   },
+  "ButtonTheme": {
+    "theme": "Theme"
+  },
   "ButtonLang": {
     "select-language": "Select Language",
     "no-language-found": "No language found."

@@ -11,6 +11,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonLang from "@/components/containers/ButtonLang";
+import ButtonTheme from "@/components/containers/ButtonTheme";
 
 // LOGIC
 type Section1Props = {
@@ -45,6 +46,7 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
         </div>
       </div>
       <div className="absolute bottom-0 right-0">
+        <ButtonTheme t={t} />
         <ButtonLang t={t} />
       </div>
     </section>
