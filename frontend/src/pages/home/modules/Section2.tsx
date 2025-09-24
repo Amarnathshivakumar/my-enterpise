@@ -18,13 +18,13 @@ type Section2Props = {
 // SECTION 2
 const Section2: React.FC<Section2Props> = ({ t }) => {
   return (
-    <section className="h-dvh bg-gray-800 grid grid-cols-2">
+    <section className="h-dvh bg-gray-950 grid grid-cols-2">
       <article className="flex flex-col justify-center items-start p-20 space-y-4">
         <h3 className="font-bold text-6xl">{t("home.text-3")}</h3>
         <p className="text-2xl font-light">{t("home.text-4")}</p>
         <p>{t("words.view")}</p>
       </article>
-      <div className="bg-gray-800">
+      <div className="bg-gray-950">
         <img
           src="/img/img-1.png"
           alt="image"

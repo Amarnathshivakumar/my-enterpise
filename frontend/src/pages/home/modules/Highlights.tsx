@@ -23,7 +23,7 @@ type HighlightsProps = {
 // HIGHLIGHTS COMPONENT
 const Highlights: React.FC<HighlightsProps> = ({ t }) => {
   return (
-    <section className="bg-gray-300 w-full text-black dark:bg-black dark:text-white h-[45vh] flex flex-col items-center">
+    <section className="bg-gray-300 w-full text-black dark:bg-gray-800 dark:text-white h-[45vh] flex flex-col items-center">
       <h2
         className="font-light text-5xl lilita-one"
         style={{ paddingTop: "3%" }}
