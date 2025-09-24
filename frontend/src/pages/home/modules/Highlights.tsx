@@ -40,7 +40,7 @@ const Highlights: React.FC<HighlightsProps> = ({ t }) => {
             alt="icon"
             className="w-auto h-24 dark:invert"
           />
-          <p className="">Modular</p>
+          <p className="font-black font-[Montserrat]">Modular</p>
         </div>
         <div className="flex flex-col items-center">
           <img
@@ -48,15 +48,13 @@ const Highlights: React.FC<HighlightsProps> = ({ t }) => {
             alt="icon"
             className="w-auto h-24 dark:invert"
           />
-          <p>{t("home.open-source")}</p>
+          <p className="font-black font-[Montserrat]">
+            {t("home.open-source")}
+          </p>
         </div>
         <div className="flex flex-col items-center">
-          <img
-            src={groupIcon}
-            alt="icon"
-            className="w-auto h-24 dark:invert"
-          />
-          <p>{t("home.i-t-c")}</p>
+          <img src={groupIcon} alt="icon" className="w-auto h-24 dark:invert" />
+          <p className="font-black font-[Montserrat]">{t("home.i-t-c")}</p>
         </div>
         <div className="flex flex-col items-center">
           <img
@@ -64,7 +62,7 @@ const Highlights: React.FC<HighlightsProps> = ({ t }) => {
             alt="icon"
             className="w-auto h-24 dark:invert"
           />
-          <p>{t("home.secure")}</p>
+          <p className="font-black font-[Montserrat]">{t("home.secure")}</p>
         </div>
         <div className="flex flex-col items-center">
           <img
@@ -72,7 +70,7 @@ const Highlights: React.FC<HighlightsProps> = ({ t }) => {
             alt="icon"
             className="w-auto h-24 dark:invert"
           />
-          <p>{t("home.host")}</p>
+          <p className="font-black font-[Montserrat]">{t("home.host")}</p>
         </div>
       </div>
     </section>
