@@ -31,13 +31,13 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
         <div className="flex flex-col gap-4">
           <div className="flex gap-4">
             <button
-              className="rounded bg-accent px-4 py-2 font-medium text-black dark:text-white"
+              className="rounded bg-accent px-4 py-2 font-medium text-white"
               onClick={() => navigate("/login")}
             >
               {t("words.login")}
             </button>
             <button
-              className="rounded border-2 px-4 py-2 font-medium"
+              className="rounded border-2 px-4 py-2 font-medium border-white"
               onClick={() => navigate("/register")}
             >
               {t("words.register")}
