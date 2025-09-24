@@ -1,7 +1,8 @@
 {
   "words": {
     "login": "Iniciar Sesión",
-    "register": "Registrate"
+    "register": "Registrate",
+    "view": "Ver"
   },
   "not-found": {
     "title": "404 - No Encontrado",
@@ -18,7 +19,9 @@
     "open-source": "Codigo Abierto",
     "i-t-c": "I-G-E",
     "secure": "Seguro",
-    "host": "Hosteable"
+    "host": "Hosteable",
+    "text-3": "Guía oficial del gestor de la lógica de negocio",
+    "text-4": "Aprende todo lo que necesitas para gestionar tu negocio de manera eficiente con un ERP/CRM modular y de código abierto para individuos, equipos y empresas."
   },
   "navbar": {
     "home": "Inicio",

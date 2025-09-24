@@ -1,7 +1,8 @@
 {
   "words": {
     "login": "Login",
-    "register": "Register."
+    "register": "Register.",
+    "view": "View"
   },
   "not-found": {
     "title": "404 - Not Found",
@@ -18,7 +19,9 @@
     "open-source": "Open Source",
     "i-t-c": "I-T-C",
     "secure": "Secure",
-    "host": "Hostable"
+    "host": "Hostable",
+    "text-3": "Official Business Logic Manager Guide",
+    "text-4": "Learn everything you need to manage your business efficiently with a modular, open-source ERP/CRM for individuals, teams, and companies."
   },
   "navbar": {
     "home": "Home",

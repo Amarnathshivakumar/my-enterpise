@@ -11,6 +11,7 @@
 import React from "react";
 import Section1 from "./Section1";
 import Highlights from "./Highlights";
+import Section2 from "./Section2";
 
 // LOGIC
 type ContentProps = {
@@ -23,6 +24,7 @@ const Content: React.FC<ContentProps> = ({ t }) => {
     <>
       <Section1 t={t} />
       <Highlights t={t} />
+      <Section2 t={t} />
     </>
   );
 };
