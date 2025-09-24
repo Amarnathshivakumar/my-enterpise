@@ -1,11 +1,21 @@
 {
+  "words": {
+    "login": "Iniciar Sesión",
+    "register": "Registrate"
+  },
   "navbar": {
     "home": "Inicio",
     "dom": "Documentacion",
     "src": "Recursos"
   },
   "home": {
-    "get_started": "Empezar",
-    "theme": "Tema"
+    "text-1": "Hola, Trabajo!",
+    "text-2": "Project-Manager/ERP/CRM modular de código abierto para gestionar negocios con simplicidad y flexibilidad.",
+    "theme": "Tema",
+    "access": "Acceder"
+  },
+  "ButtonLang": {
+    "select-language": "Seleccionar Idioma",
+    "no-language-found": "No se encontro el Lenguaje."
   }
 }

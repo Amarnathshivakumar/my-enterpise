@@ -1,11 +1,21 @@
 {
+  "words": {
+    "login": "Login",
+    "register": "Register."
+  },
   "navbar": {
     "home": "Home",
     "dom": "Documentation",
     "src": "Resources"
   },
   "home": {
-    "get_started": "Get Started",
-    "theme": "Theme"
+    "text-1": "Hello, Work!",
+    "text-2": "Project-Manager/ERP/CRM modular open source to manage business with simplicity and flexibility.",
+    "theme": "Theme",
+    "access": "Access"
+  },
+  "ButtonLang": {
+    "select-language": "Select Language",
+    "no-language-found": "No language found."
   }
 }

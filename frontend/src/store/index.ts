@@ -13,12 +13,14 @@ import { api } from "@/services";
 
 // SLICES
 import themeReducer from "./tasks/themeState";
+import langReducer from "./tasks/langState";
 
 // STORE
 const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
     theme: themeReducer,
+    lang: langReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),

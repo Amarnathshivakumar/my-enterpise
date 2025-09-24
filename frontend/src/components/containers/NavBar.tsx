@@ -94,7 +94,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
             <img
               src={logoLight}
               alt="Logo"
-              className="max-w-40 object-contain"
+              className="max-w-20 object-contain md:max-w-40"
             />
           </div>
           <NavigationMenu>
@@ -102,13 +102,13 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
               <NavigationMenuItem>
                 <NavigationMenuLink
                   asChild
-                  className={`${navigationMenuTriggerStyle()} !bg-transparent !text-white font-[Montserrat] text-[20px] !font-bold uppercase !hover:bg-transparent !focus:bg-transparent !h-0 !p-0`}
+                  className={`${navigationMenuTriggerStyle()} !bg-transparent !text-white font-[Montserrat] text-[10px] !font-bold uppercase !hover:bg-transparent !focus:bg-transparent !h-0 !p-0 sm:text-[20px]`}
                 >
                   <a href="/">{t("navbar.home")}</a>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[20px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0">
+                <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[10px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0 sm:text-[20px]">
                   {t("navbar.dom")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -122,7 +122,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[20px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0">
+                <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[10px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0 sm:text-[20px]">
                   {t("navbar.src")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -156,7 +156,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   href="https://github.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-white"
+                  className="items-center text-white hidden sm:flex"
                 >
                   <Github size={40} />
                 </a>
@@ -166,13 +166,13 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   href="https://x.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-white"
+                  className="items-center text-white hidden sm:flex"
                 >
                   <Twitter size={40} />
                 </a>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <a href="#" className="flex items-center text-white">
+                <a href="#" className="items-center text-white hidden sm:flex">
                   <CircleCheckBig size={40} />
                 </a>
               </NavigationMenuItem>

@@ -107,7 +107,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.n-l {
-  line-height: 0;
-}
