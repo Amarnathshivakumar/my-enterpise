@@ -12,7 +12,8 @@
     "text-1": "Hola, Trabajo!",
     "text-2": "Project-Manager/ERP/CRM modular de código abierto para gestionar negocios con simplicidad y flexibilidad.",
     "theme": "Tema",
-    "access": "Acceder"
+    "access": "Acceder",
+    "highlights": "Destacados"
   },
   "ButtonLang": {
     "select-language": "Seleccionar Idioma",

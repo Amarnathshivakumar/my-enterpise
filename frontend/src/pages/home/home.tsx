@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : home.tsx
  *  DATE      : 20/08/2025
- *  DATE_MODIFY       : 23/09/2025
+ *  DATE_MODIFY       : 24/09/2025
  *  DESCRIPTION: PAGE HOME
  * =====================================================
  */
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
       {/* NAVBAR */}
       <NavBar t={t} />
       {/* MAIN CONTENT */}
-      <main className="relative flex flex-col justify-center text-white p-6 max-w-screen max-h-screen h-dvh">
+      <main className="relative flex flex-col text-white max-w-screen">
         {/* BACKGROUND */}
         <div className="fixed top-0 left-0 w-full h-full -z-10">
           <img
