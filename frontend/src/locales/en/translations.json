@@ -14,7 +14,11 @@
     "text-2": "Project-Manager/ERP/CRM modular open source to manage business with simplicity and flexibility.",
     "theme": "Theme",
     "access": "Access",
-    "highlights": "Highlights"
+    "highlights": "Highlights",
+    "open-source": "Open Source",
+    "i-t-c": "I-T-C",
+    "secure": "Secure",
+    "host": "Hostable"
   },
   "navbar": {
     "home": "Home",

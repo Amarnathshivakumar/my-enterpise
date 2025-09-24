@@ -9,6 +9,11 @@
 
 // DEPENDENCIES
 import React from "react";
+import modularIcon from "/svg/modular-icon.svg";
+import opensourceIcon from "/svg/opensource-icon.svg";
+import groupIcon from "/svg/group-icon.svg";
+import secureIcon from "/svg/secure-icon.svg";
+import serverIcon from "/svg/server-icon.svg";
 
 // LOGIC
 type HighlightsProps = {
@@ -18,9 +23,39 @@ type HighlightsProps = {
 // HIGHLIGHTS COMPONENT
 const Highlights: React.FC<HighlightsProps> = ({ t }) => {
   return (
-    <div className="bg-white w-full text-black dark:bg-gray-800 dark:text-white">
-      <h2>{t("home.highlights")}</h2>
-    </div>
+    <section className="bg-white w-full text-black dark:bg-gray-800 dark:text-white h-[45vh] flex flex-col items-center">
+      <h2
+        className="font-light text-5xl lilita-one"
+        style={{ paddingTop: "3%" }}
+      >
+        {t("home.highlights")}
+      </h2>
+      <div
+        className="flex flex-row justify-center items-start gap-5 w-full sm:gap-7 md:gap-20"
+        style={{ paddingTop: "3%" }}
+      >
+        <div className="flex flex-col items-center">
+          <img src={modularIcon} alt="icon" className="w-auto h-24" />
+          <p className="">Modular</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <img src={opensourceIcon} alt="icon" className="w-auto h-24" />
+          <p>{t("home.open-source")}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <img src={groupIcon} alt="icon" className="w-auto h-24" />
+          <p>{t("home.i-t-c")}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <img src={secureIcon} alt="icon" className="w-auto h-24" />
+          <p>{t("home.secure")}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <img src={serverIcon} alt="icon" className="w-auto h-24" />
+          <p>{t("home.host")}</p>
+        </div>
+      </div>
+    </section>
   );
 };
 

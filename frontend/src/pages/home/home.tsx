@@ -12,15 +12,16 @@ import React from "react";
 import NavBar from "@/components/containers/NavBar";
 import Content from "./modules/Content";
 import backgroundImage from "/img/bg-web.jpg";
+import "@/assets/css/fonts.css";
+
 
 // LOGIC
 type HomePageProps = {
   t: (key: string) => string;
 };
 
-
 // HOME PAGE
-const Home: React.FC<HomePageProps> = ({t}) => {
+const Home: React.FC<HomePageProps> = ({ t }) => {
   return (
     <>
       {/* NAVBAR */}
@@ -37,7 +38,7 @@ const Home: React.FC<HomePageProps> = ({t}) => {
           <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
         </div>
         {/* WELCOME CONTENT */}
-        <Content t={t}/>
+        <Content t={t} />
       </main>
     </>
   );

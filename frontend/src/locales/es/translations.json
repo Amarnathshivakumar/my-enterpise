@@ -14,7 +14,11 @@
     "text-2": "Project-Manager/ERP/CRM modular de código abierto para gestionar negocios con simplicidad y flexibilidad.",
     "theme": "Tema",
     "access": "Acceder",
-    "highlights": "Destacados"
+    "highlights": "Destacados",
+    "open-source": "Codigo Abierto",
+    "i-t-c": "I-G-E",
+    "secure": "Seguro",
+    "host": "Hosteable"
   },
   "navbar": {
     "home": "Inicio",
