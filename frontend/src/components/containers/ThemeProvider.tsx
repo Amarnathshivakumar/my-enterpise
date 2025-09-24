@@ -1,7 +1,7 @@
 /**
  * =====================================================
  *  NAME    : ThemeProvider.tsx
- *  DATE      : 20/08/2025
+ *  DATE      : 20/09/2025
  *  DATE_MODIFY       : 24/09/2025
  *  DESCRIPTION: THEME PROVIDER FOR DARK MODE AND LIGHT MODE
  * =====================================================

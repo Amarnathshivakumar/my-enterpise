@@ -1,8 +1,8 @@
 /**
  * =====================================================
  *  NAME    : Highlights.tsx
- *  DATE      : 24/08/2025
- *  DATE_MODIFY       : 24/08/2025
+ *  DATE      : 24/09/2025
+ *  DATE_MODIFY       : 24/09/2025
  *  DESCRIPTION: CONTENT HIGHLIGHTS HOME PAGE
  * =====================================================
  */

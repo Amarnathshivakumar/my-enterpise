@@ -1,7 +1,7 @@
 /**
  * =====================================================
  *  NAME    : index.ts
- *  DATE      : 20/08/2025
+ *  DATE      : 20/09/2025
  *  DATE_MODIFY       : 21/09/25
  *  DESCRIPTION: SERVICES FOR API WITH REDUX TOOLKIT QUERY
  * =====================================================
