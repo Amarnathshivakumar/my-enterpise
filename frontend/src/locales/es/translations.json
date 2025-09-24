@@ -3,10 +3,11 @@
     "login": "Iniciar Sesión",
     "register": "Registrate"
   },
-  "navbar": {
-    "home": "Inicio",
-    "dom": "Documentacion",
-    "src": "Recursos"
+  "not-found": {
+    "title": "404 - No Encontrado",
+    "message": "Oops! Parece que estas perdido.",
+    "go-back-home": "Vamos a regresarte",
+    "home": "Inicio"
   },
   "home": {
     "text-1": "Hola, Trabajo!",
@@ -14,6 +15,11 @@
     "theme": "Tema",
     "access": "Acceder",
     "highlights": "Destacados"
+  },
+  "navbar": {
+    "home": "Inicio",
+    "dom": "Documentacion",
+    "src": "Recursos"
   },
   "ButtonLang": {
     "select-language": "Seleccionar Idioma",

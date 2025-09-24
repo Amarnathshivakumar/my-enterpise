@@ -3,10 +3,11 @@
     "login": "Login",
     "register": "Register."
   },
-  "navbar": {
-    "home": "Home",
-    "dom": "Documentation",
-    "src": "Resources"
+  "not-found": {
+    "title": "404 - Not Found",
+    "message": "Oops! Looks like you're lost.",
+    "go-back-home": "Let's get you back",
+    "home": "home"
   },
   "home": {
     "text-1": "Hello, Work!",
@@ -14,6 +15,11 @@
     "theme": "Theme",
     "access": "Access",
     "highlights": "Highlights"
+  },
+  "navbar": {
+    "home": "Home",
+    "dom": "Documentation",
+    "src": "Resources"
   },
   "ButtonLang": {
     "select-language": "Select Language",

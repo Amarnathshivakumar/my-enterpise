@@ -1,7 +1,7 @@
 /**
  * =====================================================
  *  NAME    : Content.tsx
- *  DATE      : 23/08/2025
+ *  DATE      : 23/09/2025
  *  DATE_MODIFY       : 24/09/2025
  *  DESCRIPTION: CONTENT FOR HOME PAGE
  * =====================================================
@@ -15,7 +15,6 @@ import Highlights from "./Highlights";
 // LOGIC
 type ContentProps = {
   t: (key: string) => string;
-  changeLanguage: (lng: string) => void;
 };
 
 // CONTENT

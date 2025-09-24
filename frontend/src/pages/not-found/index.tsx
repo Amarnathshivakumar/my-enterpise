@@ -1,10 +1,23 @@
-const NotFoundPage: React.FC = () => {
+/**
+ * =====================================================
+ *  NAME    : index.tsx
+ *  DATE      : 24/09/2025
+ *  DATE_MODIFY       : 24/09/2025
+ *  DESCRIPTION: NOT FOUND PAGE
+ * =====================================================
+ */
+
+// LOGIC
+type NotFoundPageProps = {
+  t: (key: string) => string;
+};
+
+// NOT FOUND PAGE
+const NotFoundPage: React.FC<NotFoundPageProps> = ({ t }) => {
   return (
     <div className="flex h-screen flex-col items-center justify-center text-center">
       <h1 className="mb-4 text-6xl font-semibold text-red-500">404</h1>
-      <p className="mb-4 text-lg text-gray-600">
-        Oops! Looks like you're lost.
-      </p>
+      <p className="mb-4 text-lg text-gray-600">{t("not-found.message")}</p>
       <div className="animate-bounce">
         <svg
           className="mx-auto size-16 text-red-500"
@@ -21,13 +34,12 @@ const NotFoundPage: React.FC = () => {
         </svg>
       </div>
       <p className="mt-4 text-gray-600">
-        Let's get you back{" "}
+        {t("not-found.go-back-home")}{" "}
         <a className="text-blue-500" href="/">
-          home
+          {t("not-found.home")}
         </a>
       </p>
     </div>
   );
 };
-
 export default NotFoundPage;
