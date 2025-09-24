@@ -58,12 +58,6 @@ const resourcesItems = [
     description: "Connect with other developers and share ideas.",
   },
 ];
-
-// LOGIC
-type NavBarProps = {
-  t: (key: string) => string;
-};
-
 function ListItem({
   title,
   children,
@@ -73,8 +67,11 @@ function ListItem({
   return (
     <li {...props}>
       <NavigationMenuLink asChild>
-        <a href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
+        <a
+          className="block select-none no-underline outline-none focus:shadow-md rounded-md p-2 hover:bg-muted"
+          href={href}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
             {children}
           </p>
@@ -84,7 +81,12 @@ function ListItem({
   );
 }
 
-// COMPONENT
+// LOGIC
+type NavBarProps = {
+  t: (key: string) => string;
+};
+
+// NAVBAR COMPONENT
 const NavBar: React.FC<NavBarProps> = ({ t }) => {
   return (
     <header className="w-full px-4 z-50">
@@ -99,6 +101,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
           </div>
           <NavigationMenu>
             <NavigationMenuList className="flex gap-2 items-end">
+              {/* HOME */}
               <NavigationMenuItem>
                 <NavigationMenuLink
                   asChild
@@ -107,12 +110,28 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   <a href="/">{t("navbar.home")}</a>
                 </NavigationMenuLink>
               </NavigationMenuItem>
+              {/* DOCUMENTATION */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[10px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0 sm:text-[20px]">
                   {t("navbar.dom")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[300px] gap-2">
+                  <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <a
+                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                          href="/docs"
+                        >
+                          <div className="mt-4 mb-2 text-lg font-medium">
+                            shadcn/ui Docs
+                          </div>
+                          <p className="text-muted-foreground text-sm leading-tight">
+                            Learn about components and best practices.
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
                     {documentationItems.map((item) => (
                       <ListItem key={item.title} href={item.href}>
                         {item.description}
@@ -121,16 +140,17 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              {/* RESOURCES */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="!bg-transparent !text-white font-[Montserrat] text-[10px] font-bold uppercase !hover:bg-transparent !focus:bg-transparent data-[state=open]:!bg-transparent data-[state=open]:!hover:bg-transparent !h-0 !p-0 sm:text-[20px]">
                   {t("navbar.src")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[300px] gap-2">
+                  <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
-                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md p-6 no-underline outline-hidden select-none focus:shadow-md"
+                          className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                           href="/resources"
                         >
                           <div className="mt-4 mb-2 text-lg font-medium">
@@ -151,6 +171,7 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              {/* ICON LINKS */}
               <NavigationMenuItem>
                 <a
                   href="https://github.com/"
@@ -183,4 +204,5 @@ const NavBar: React.FC<NavBarProps> = ({ t }) => {
     </header>
   );
 };
+
 export default NavBar;
