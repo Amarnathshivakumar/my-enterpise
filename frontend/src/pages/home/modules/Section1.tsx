@@ -47,7 +47,7 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
       </div>
       <div className="absolute bottom-0 right-0">
         <ButtonTheme t={t} />
-        <ButtonLang t={t} />
+        <ButtonLang t={t} className="hover:bg-transparent"/>
       </div>
     </section>
   );

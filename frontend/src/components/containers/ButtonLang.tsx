@@ -31,10 +31,11 @@ import { Lang } from "@/store/tasks/langState";
 // LOGIC
 type ButtonLangProps = {
   t: (key: string) => string;
+  className?: string;
 };
 
 // COMPONENT
-const ButtonLang: React.FC<ButtonLangProps> = ({ t }) => {
+const ButtonLang: React.FC<ButtonLangProps> = ({ t, className }) => {
   const [open, setOpen] = React.useState(false);
   const { lang, set } = useLang();
   const languages = [
@@ -52,7 +53,7 @@ const ButtonLang: React.FC<ButtonLangProps> = ({ t }) => {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[160px] justify-between text-white bg-transparent border-0"
+          className={`w-[160px] justify-between text-white bg-transparent border-0 ${className}`}
         >
           {languages.find((l) => l.value === lang)?.label}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
