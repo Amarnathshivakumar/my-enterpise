@@ -35,23 +35,43 @@ const Highlights: React.FC<HighlightsProps> = ({ t }) => {
         style={{ paddingTop: "3%" }}
       >
         <div className="flex flex-col items-center">
-          <img src={modularIcon} alt="icon" className="w-auto h-24" />
+          <img
+            src={modularIcon}
+            alt="icon"
+            className="w-auto h-24 dark:invert"
+          />
           <p className="">Modular</p>
         </div>
         <div className="flex flex-col items-center">
-          <img src={opensourceIcon} alt="icon" className="w-auto h-24" />
+          <img
+            src={opensourceIcon}
+            alt="icon"
+            className="w-auto h-24 dark:invert"
+          />
           <p>{t("home.open-source")}</p>
         </div>
         <div className="flex flex-col items-center">
-          <img src={groupIcon} alt="icon" className="w-auto h-24" />
+          <img
+            src={groupIcon}
+            alt="icon"
+            className="w-auto h-24 dark:invert"
+          />
           <p>{t("home.i-t-c")}</p>
         </div>
         <div className="flex flex-col items-center">
-          <img src={secureIcon} alt="icon" className="w-auto h-24" />
+          <img
+            src={secureIcon}
+            alt="icon"
+            className="w-auto h-24 dark:invert"
+          />
           <p>{t("home.secure")}</p>
         </div>
         <div className="flex flex-col items-center">
-          <img src={serverIcon} alt="icon" className="w-auto h-24" />
+          <img
+            src={serverIcon}
+            alt="icon"
+            className="w-auto h-24 dark:invert"
+          />
           <p>{t("home.host")}</p>
         </div>
       </div>
