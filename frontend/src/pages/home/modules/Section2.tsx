@@ -31,7 +31,7 @@ const Section2: React.FC<Section2Props> = ({ t }) => {
         <img
           src="/img/img-1.png"
           alt="image"
-          className="w-full h-full object-contain dark:invert-90"
+          className="w-full h-full object-contain dark:invert-90 dark:opacity-60"
         />
       </div>
     </section>

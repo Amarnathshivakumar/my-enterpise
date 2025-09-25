@@ -23,7 +23,17 @@
     "text-3": "Official Business Logic Manager Guide",
     "text-4": "Learn everything you need to manage your business efficiently with a modular, open-source ERP/CRM for individuals, teams, and companies.",
     "text-5": "Everything you need to manage your business.",
-    "text-6": "Simplify operations with a modular, open source system designed for teams and companies."
+    "text-6": "Simplify operations with a modular, open source system designed for teams and companies.",
+    "card1-title": "Modular",
+    "card1-text": "Activate only the modules you actually need, avoiding unnecessary bloat in your project. This allows you to customize the experience, keep your code clean, and improve application efficiency. Each module works independently, making updates and maintenance easier without affecting other parts of the system.",
+    "card2-title": "Open Source",
+    "card2-text": "Completely free and accessible to everyone. You can study the code, adapt it to your needs, or contribute to the community. This fosters collaboration, innovation, and ensures transparency on how the system works. Perfect for developers looking to learn and enhance their workflow.",
+    "card3-title": "Individual / Team / Company",
+    "card3-text": "Scales seamlessly from personal projects to team collaborations and enterprise-level deployments. The flexible architecture allows individual developers and entire teams to work efficiently while sharing resources and maintaining project consistency.",
+    "card4-title": "Secure",
+    "card4-text": "Built with data privacy and reliability in mind. Includes modern security measures to protect your information and that of your users. Ideal for applications where security is critical, such as finance, healthcare, or sensitive data management.",
+    "card5-title": "Self-hostable",
+    "card5-text": "Deploy locally, on private servers, or in the cloud. Gives you full control over your data and infrastructure. Perfect for those who need customization, independence from third-party services, or compliance with internal regulations."
   },
   "navbar": {
     "home": "Home",

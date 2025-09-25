@@ -25,6 +25,7 @@ type Section3Props = {
 
 // SECTION 2
 const Section3: React.FC<Section3Props> = ({ t }) => {
+  const cards = ["card1", "card2", "card3", "card4", "card5"];
   return (
     <section className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid grid-rows-2 gap-8 w-full">
       <article className="flex flex-col text-center items-center lg:p-20 space-y-4 z-10 w-full h-full">
@@ -33,18 +34,21 @@ const Section3: React.FC<Section3Props> = ({ t }) => {
       </article>
       <div className="w-full overflow-hidden">
         <Carousel className="w-full max-w-4xl mx-auto relative">
-          <CarouselContent className="-ml-2 flex gap-4">
-            {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselContent className="-ml-2 flex gap-4 max-h-full">
+            {cards.map((cardKey, index) => (
               <CarouselItem
                 key={index}
                 className="pl-2 md:basis-1/2 lg:basis-1/3"
               >
                 <div className="p-1">
                   <Card>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-2xl font-semibold">
-                        {index + 1}
-                      </span>
+                    <CardContent className="flex flex-col items-start justify-start p-6 h-70 overflow-y-auto">
+                      <h4 className="text-xl font-bold mb-2">
+                        {t(`home.${cardKey}-title`)}
+                      </h4>
+                      <p className="text-base font-light">
+                        {t(`home.${cardKey}-text`)}
+                      </p>
                     </CardContent>
                   </Card>
                 </div>
@@ -58,4 +62,5 @@ const Section3: React.FC<Section3Props> = ({ t }) => {
     </section>
   );
 };
+
 export default Section3;

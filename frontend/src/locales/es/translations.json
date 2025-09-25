@@ -21,7 +21,19 @@
     "secure": "Seguro",
     "host": "Hosteable",
     "text-3": "Guía oficial del gestor de la lógica de negocio",
-    "text-4": "Aprende todo lo que necesitas para gestionar tu negocio de manera eficiente con un ERP/CRM modular y de código abierto para individuos, equipos y empresas."
+    "text-4": "Aprende todo lo que necesitas para gestionar tu negocio de manera eficiente con un ERP/CRM modular y de código abierto para individuos, equipos y empresas.",
+    "text-5": "Todo lo que necesitas para gestionar tu negocio.",
+    "text-6": "Simplifica las operaciones con un sistema modular y de código abierto, diseñado para equipos y empresas.",
+    "card1-title": "Modular",
+    "card1-text": "Activa solo los módulos que realmente necesitas, evitando sobrecargar tu proyecto. Esto te permite personalizar la experiencia, mantener un código limpio y mejorar la eficiencia de la aplicación. Cada módulo funciona de forma independiente, facilitando actualizaciones y mantenimiento sin afectar otras partes del sistema.",
+    "card2-title": "Código abierto",
+    "card2-text": "Completamente gratuito y accesible para todos. Puedes estudiar el código, adaptarlo a tus necesidades o contribuir a la comunidad. Esto fomenta la colaboración, la innovación y garantiza transparencia sobre cómo funciona el sistema. Ideal para desarrolladores que quieren aprender y mejorar su flujo de trabajo.",
+    "card3-title": "Individual / Equipo / Empresa",
+    "card3-text": "Escalable para cualquier tipo de usuario: desde proyectos personales hasta equipos y grandes empresas. La arquitectura flexible permite que tanto un desarrollador individual como un equipo completo trabajen de manera eficiente, compartiendo recursos y manteniendo la coherencia del proyecto.",
+    "card4-title": "Seguro",
+    "card4-text": "Construido con la privacidad de los datos y la confiabilidad como prioridad. Incluye medidas de seguridad modernas para proteger tu información y la de tus usuarios. Ideal para entornos donde la seguridad es crítica, como aplicaciones financieras, médicas o de gestión de datos sensibles.",
+    "card5-title": "Autoalojable",
+    "card5-text": "Puedes desplegarlo localmente, en servidores privados o en la nube. Esto te da control total sobre tus datos y tu infraestructura. Perfecto para quienes necesitan personalización, independencia de servicios de terceros o cumplir con regulaciones internas."
   },
   "navbar": {
     "home": "Inicio",
