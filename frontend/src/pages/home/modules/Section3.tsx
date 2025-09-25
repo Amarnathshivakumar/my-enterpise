@@ -55,8 +55,8 @@ const Section3: React.FC<Section3Props> = ({ t }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20" />
-          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20" />
+          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 hover:cursor-pointer dark:hover:bg-black" />
+          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 hover:cursor-pointer dark:hover:bg-black" />
         </Carousel>
       </div>
     </section>

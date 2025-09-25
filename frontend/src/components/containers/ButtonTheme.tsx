@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : ButtonTheme.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 24/09/2025
+ *  DATE_MODIFY       : 25/09/2025
  *  DESCRIPTION: BUTTON TO CHANGE THEME
  * =====================================================
  */
@@ -27,7 +27,7 @@ const ButtonTheme: React.FC<ButtonThemeProps> = ({ t }) => {
       variant={"ghost"}
       onClick={toggle}
       title="Toggle Theme"
-      className="hover:bg-transparent text-white hover:text-white"
+      className="hover:bg-transparent text-white hover:text-white hover:cursor-pointer"
     >
       {t("ButtonTheme.theme")}: {theme === "light" ? <Sun /> : <Moon />}
     </Button>

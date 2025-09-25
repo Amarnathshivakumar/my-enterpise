@@ -32,13 +32,13 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
               <button
-                className="rounded bg-accent px-4 py-2 font-medium text-white"
+                className="rounded bg-accent px-4 py-2 font-medium text-white dark:bg-gray-950 hover:cursor-pointer hover:dark:bg-black"
                 onClick={() => navigate("/login")}
               >
                 {t("words.login")}
               </button>
               <button
-                className="rounded border-2 px-4 py-2 font-medium border-white"
+                className="rounded border-2 px-4 py-2 font-medium border-white hover:cursor-pointer hover:border-gray-800"
                 onClick={() => navigate("/register")}
               >
                 {t("words.register")}
@@ -60,7 +60,10 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
       </div>
       <div className="absolute bottom-0 right-0">
         <ButtonTheme t={t} />
-        <ButtonLang t={t} className="hover:bg-transparent" />
+        <ButtonLang
+          t={t}
+          className="hover:bg-transparent hover:cursor-pointer"
+        />
       </div>
     </section>
   );
