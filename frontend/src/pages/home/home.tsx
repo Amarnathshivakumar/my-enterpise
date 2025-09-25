@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : home.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 24/09/2025
+ *  DATE_MODIFY       : 25/09/2025
  *  DESCRIPTION: PAGE HOME
  * =====================================================
  */
@@ -14,7 +14,7 @@ import Content from "./modules/Content";
 import backgroundImage from "/img/bg-web.jpg";
 import "@/assets/css/fonts.css";
 import "@/assets/css/animationsHome.css";
-
+import Footer from "@/components/containers/Footer";
 
 // LOGIC
 type HomePageProps = {
@@ -41,6 +41,8 @@ const Home: React.FC<HomePageProps> = ({ t }) => {
         {/* WELCOME CONTENT */}
         <Content t={t} />
       </main>
+      {/* FOOTER */}
+      <Footer t={t} />
     </>
   );
 };

@@ -47,5 +47,8 @@
   "ButtonLang": {
     "select-language": "Seleccionar Idioma",
     "no-language-found": "No se encontro el Lenguaje."
+  },
+  "footer": {
+    "slogan": "Project-Manager/ERP/CRM modular de código abierto para gestionar negocios con simplicidad y flexibilidad."
   }
 }
