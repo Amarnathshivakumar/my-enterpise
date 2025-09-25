@@ -19,15 +19,15 @@ type Section2Props = {
 // SECTION 2
 const Section2: React.FC<Section2Props> = ({ t }) => {
   return (
-    <section className="min-h-dvh bg-gray-950 grid grid-cols-2 border-blur">
-      <article className="flex flex-col justify-center items-start lg:p-20 space-y-4 z-1">
+    <section className="min-h-dvh bg-gray-950 dark:bg-black grid grid-cols-2 border-blur">
+      <article className="flex flex-col justify-center items-start lg:p-20 space-y-4 z-1 dark:bg-white/10">
         <h3 className="font-bold lg:text-6xl">{t("home.text-3")}</h3>
         <p className="lg:text-2xl font-light">{t("home.text-4")}</p>
-        <Button className="rounded bg-accent px-10 md-4 lg:px-20 lg:py-7 font-bold text-3xl">
+        <Button className="rounded bg-accent px-10 md-4 lg:px-20 lg:py-7 font-bold text-3xl dark:bg-black">
           {t("words.view")}
         </Button>
       </article>
-      <div className="bg-gray-950 z-1">
+      <div className="bg-gray-950 dark:bg-white/10 z-1">
         <img
           src="/img/img-1.png"
           alt="image"

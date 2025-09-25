@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : NavBar.tsx
  *  DATE      : 22/09/2025
- *  DATE_MODIFY       : 23/09/2025
+ *  DATE_MODIFY       : 25/09/2025
  *  DESCRIPTION: NAVIGATION BAR COMPONENT
  * =====================================================
  */
@@ -89,7 +89,7 @@ type NavBarProps = {
 // NAVBAR COMPONENT
 const NavBar: React.FC<NavBarProps> = ({ t }) => {
   return (
-    <header className="w-full px-4 z-50">
+    <header className="w-full px-4 z-50 dark:bg-black/50">
       <div className="flex justify-center w-full">
         <div className="flex w-full max-w-6xl justify-between items-center py-2">
           <div className="flex-shrink-0">

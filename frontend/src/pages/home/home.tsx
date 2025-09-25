@@ -28,7 +28,7 @@ const Home: React.FC<HomePageProps> = ({ t }) => {
       {/* NAVBAR */}
       <NavBar t={t} />
       {/* MAIN CONTENT */}
-      <main className="relative flex flex-col text-white max-w-screen">
+      <main className="relative flex flex-col text-white max-w-screen dark:bg-black/50">
         {/* BACKGROUND */}
         <div className="fixed top-0 left-0 w-full h-full -z-10">
           <img

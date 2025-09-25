@@ -27,9 +27,9 @@ type Section3Props = {
 const Section3: React.FC<Section3Props> = ({ t }) => {
   const cards = ["card1", "card2", "card3", "card4", "card5"];
   return (
-    <section className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid grid-rows-2 gap-8 w-full">
+    <section className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid grid-rows-2 gap-8 w-full p-10">
       <article className="flex flex-col text-center items-center lg:p-20 space-y-4 z-10 w-full h-full">
-        <h3 className="font-bold lg:text-6xl">{t("home.text-5")}</h3>
+        <h4 className="font-bold lg:text-6xl">{t("home.text-5")}</h4>
         <p className="lg:text-2xl font-light">{t("home.text-6")}</p>
       </article>
       <div className="w-full overflow-hidden">
