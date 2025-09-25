@@ -13,6 +13,7 @@ import NavBar from "@/components/containers/NavBar";
 import Content from "./modules/Content";
 import backgroundImage from "/img/bg-web.jpg";
 import "@/assets/css/fonts.css";
+import "@/assets/css/animationsHome.css";
 
 
 // LOGIC

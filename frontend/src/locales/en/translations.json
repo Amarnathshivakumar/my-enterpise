@@ -21,7 +21,9 @@
     "secure": "Secure",
     "host": "Hostable",
     "text-3": "Official Business Logic Manager Guide",
-    "text-4": "Learn everything you need to manage your business efficiently with a modular, open-source ERP/CRM for individuals, teams, and companies."
+    "text-4": "Learn everything you need to manage your business efficiently with a modular, open-source ERP/CRM for individuals, teams, and companies.",
+    "text-5": "Everything you need to manage your business.",
+    "text-6": "Simplify operations with a modular, open source system designed for teams and companies."
   },
   "navbar": {
     "home": "Home",

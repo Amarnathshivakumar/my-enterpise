@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Content.tsx
  *  DATE      : 23/09/2025
- *  DATE_MODIFY       : 24/09/2025
+ *  DATE_MODIFY       : 25/09/2025
  *  DESCRIPTION: CONTENT FOR HOME PAGE
  * =====================================================
  */
@@ -12,6 +12,7 @@ import React from "react";
 import Section1 from "./Section1";
 import Highlights from "./Highlights";
 import Section2 from "./Section2";
+import Section3 from "./Section3";
 
 // LOGIC
 type ContentProps = {
@@ -25,6 +26,7 @@ const Content: React.FC<ContentProps> = ({ t }) => {
       <Section1 t={t} />
       <Highlights t={t} />
       <Section2 t={t} />
+      <Section3 t={t} />
     </>
   );
 };
