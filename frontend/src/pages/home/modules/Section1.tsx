@@ -47,7 +47,7 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
           </div>
         </div>
         <div className="flex items-center justify-center">
-          <div className="honeycomb">
+          <div className="honeycomb hidden sm:block">
             <span></span>
             <span></span>
             <span></span>
