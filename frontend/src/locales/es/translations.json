@@ -50,5 +50,36 @@
   },
   "footer": {
     "slogan": "Project-Manager/ERP/CRM modular de código abierto para gestionar negocios con simplicidad y flexibilidad."
+  },
+  "login": {
+    "title": "Inicia sesión",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "emailInvalid": "Debe ser un email válido",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "********",
+    "passwordDescription": "Debe tener al menos 6 caracteres",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "submitButton": "Iniciar sesión",
+    "register": "Registrate"
+  },
+  "register": {
+    "title": "Regístrate",
+    "nameLabel": "Nombre de la entidad",
+    "namePlaceholder": "Test Individual",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@email.com",
+    "emailInvalid": "Debe ser un email válido",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "********",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "typeLabel": "Tipo de entidad",
+    "sizeLabel": "Tamaño de la entidad",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Descripción de tu entidad",
+    "numberLabel": "Número de contacto",
+    "numberPlaceholder": "5618683614",
+    "submitButton": "Crear cuenta",
+    "nameRequired": "El nombre es obligatorio"
   }
 }

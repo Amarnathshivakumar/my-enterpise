@@ -50,5 +50,36 @@
   },
   "footer": {
     "slogan": "Project-Manager/ERP/CRM modular open source to manage business with simplicity and flexibility."
+  },
+  "login": {
+    "title": "Login",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "emailInvalid": "Must be a valid email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "passwordDescription": "Must be at least 6 characters",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "submitButton": "Login",
+    "register": "Register"
+  },
+  "register": {
+    "title": "Register",
+    "nameLabel": "Name Entitie",
+    "namePlaceholder": "My Enterpise",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@email.com",
+    "emailInvalid": "Email Invalid",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "typeLabel": "Type Entitie",
+    "sizeLabel": "Size Entitie",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Description Entitie",
+    "numberLabel": "Númber Entitie",
+    "numberPlaceholder": "561223xxxx",
+    "submitButton": " Create Account",
+    "nameRequired": "Name must be required"
   }
 }

@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : index.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 26/09/25
+ *  DATE_MODIFY       : 27/09/25
  *  DESCRIPTION: ROUTER FOR REACT
  * =====================================================
  */
@@ -17,12 +17,17 @@ import "../assets/css/loading.css";
 // LOGIC
 const Home = lazy(() => import("@/pages/home/home"));
 const NotFoundPage = lazy(() => import("@/pages/not-found"));
+const Login = lazy(()=> import("@/pages/link/Login"))
+const Register = lazy(()=> import("@/pages/link/Register"))
 
 // ROUTES
 export const Router: React.FC = () => {
   const { t } = useTranslation();
   const routes = [
     { path: "/", element: <Home t={t} /> },
+    { path: "/login", element: <Login t={t} /> },
+    { path: "/login", element: <Login t={t} /> },
+    { path: "/register", element: <Register t={t} /> },
     { path: "*", element: <NotFoundPage t={t} /> },
   ];
   return <Suspense fallback={<Loading />}>{useRoutes(routes)}</Suspense>;
