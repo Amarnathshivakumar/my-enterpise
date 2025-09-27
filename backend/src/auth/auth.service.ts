@@ -16,6 +16,19 @@ export class AuthService {
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
   ) {}
+  private async logAction(
+    user_id: number | null,
+    action: string,
+    description?: string,
+  ) {
+    await this.prisma.logs.create({
+      data: {
+        user_id,
+        action,
+        description: description || action,
+      },
+    });
+  }
 
   async validateUser(
     email: string,
@@ -50,6 +63,11 @@ export class AuthService {
       },
     });
     const { password, ...result } = user;
+    await this.logAction(
+      user.id_user,
+      'register',
+      `User registered with email ${user.email}`,
+    );
     return result;
   }
 
@@ -92,10 +110,16 @@ export class AuthService {
       where: { email: user.email },
     });
     if (existsUser) throw new BadRequestException('Email already registered');
-    const hashed = await bcrypt.hash(user.password, 10);
+    const existingEntity = await this.prisma.entities.findFirst({
+      where: { name: entity.name },
+    });
+    if (existingEntity) {
+      throw new BadRequestException('Entity with this name already exists');
+    }
     const newEntity = await this.prisma.entities.create({
       data: { ...entity },
     });
+    const hashed = await bcrypt.hash(user.password, 10);
     const newUser = await this.prisma.users.create({
       data: {
         email: user.email,
@@ -108,6 +132,11 @@ export class AuthService {
       },
     });
     const { password, ...resultUser } = newUser;
+    await this.logAction(
+      newUser.id_user,
+      'start',
+      `User created and entity '${newEntity.name}' created`,
+    );
     return { entity: newEntity, user: resultUser };
   }
 
@@ -152,6 +181,7 @@ export class AuthService {
       where: { id_user: user.id_user },
       data: { last_login_at: new Date() },
     });
+    await this.logAction(user.id_user, 'login', `User logged in`);
     return { access_token, r_token };
   }
 
@@ -181,6 +211,7 @@ export class AuthService {
         expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
+    await this.logAction(record.user_id, 'refresh_token', `Token refreshed`);
     return { access_token: new_access, r_token: new_r };
   }
 
@@ -202,6 +233,7 @@ export class AuthService {
         expires_at: null,
       },
     });
+    await this.logAction(record.user_id, 'revoke_token', `Token revoked`);
     return { revoked: true };
   }
 

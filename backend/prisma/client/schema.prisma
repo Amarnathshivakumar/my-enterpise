@@ -87,7 +87,7 @@ model users {
   created_at    DateTime? @default(now()) @db.Timestamp(0)
   updated_at    DateTime? @default(now()) @db.Timestamp(0)
   tokens        tokens[]
-  logs          logs[] // <-- back-relation hacia logs
+  logs          logs[]
   entities      entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)
   profiles      profiles? @relation(fields: [profile_id], references: [id_profile])
   roles         roles     @relation(fields: [role_id], references: [id_role])
