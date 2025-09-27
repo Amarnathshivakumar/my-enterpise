@@ -9,20 +9,22 @@ datasource db {
 }
 
 model entities {
-  id         Int       @id @default(autoincrement())
-  name       String    @db.VarChar(255)
-  identifier String    @unique(map: "identifier") @db.VarChar(100)
-  address    String?   @db.Text
-  meta       String?   @db.LongText
-  active     Boolean?  @default(true)
-  created_at DateTime? @default(now()) @db.Timestamp(0)
-  updated_at DateTime? @default(now()) @db.Timestamp(0)
-  spots      spots[]
-  users      users[]
+  id_entity   Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  type        String    @db.VarChar(100)
+  description String?   @db.VarChar(255)
+  number      String?   @db.VarChar(50)
+  size        String?   @db.VarChar(50)
+  logo_url    String?   @db.VarChar(500)
+  active      Int       @default(1)
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  updated_at  DateTime? @default(now()) @db.Timestamp(0)
+  spots       spots[]
+  users       users[]
 }
 
 model profiles {
-  id         Int       @id @default(autoincrement())
+  id_profile Int       @id @default(autoincrement())
   first_name String?   @db.VarChar(150)
   last_name  String?   @db.VarChar(150)
   phone      String?   @db.VarChar(50)
@@ -33,25 +35,9 @@ model profiles {
   users      users[]
 }
 
-model refresh_tokens {
-  id                Int       @id @default(autoincrement())
-  user_id           Int
-  token             String    @db.VarChar(512)
-  revoked           Boolean?  @default(false)
-  expires_at        DateTime  @db.DateTime(0)
-  created_at        DateTime? @default(now()) @db.Timestamp(0)
-  replaced_by_token String?   @db.VarChar(512)
-  ip                String?   @db.VarChar(100)
-  user_agent        String?   @db.VarChar(500)
-  users             users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "fk_refresh_user")
-
-  @@index([token(length: 191)], map: "idx_refresh_token")
-  @@index([user_id], map: "idx_refresh_user")
-}
-
 model roles {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique(map: "name") @db.VarChar(50)
+  id_role     Int       @id @default(autoincrement())
+  name        String    @unique @db.VarChar(50)
   description String?   @db.VarChar(255)
   created_at  DateTime? @default(now()) @db.Timestamp(0)
   updated_at  DateTime? @default(now()) @db.Timestamp(0)
@@ -59,41 +45,60 @@ model roles {
 }
 
 model spots {
-  id          Int       @id @default(autoincrement())
+  id_spot     Int       @id @default(autoincrement())
   entity_id   Int
   name        String    @db.VarChar(200)
   description String?   @db.VarChar(255)
-  active      Boolean?  @default(true)
+  active      Int       @default(1)
   created_at  DateTime? @default(now()) @db.Timestamp(0)
   updated_at  DateTime? @default(now()) @db.Timestamp(0)
-  entities    entities  @relation(fields: [entity_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "fk_spot_entity")
+  entities    entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)
   users       users[]
 
-  @@index([entity_id], map: "fk_spot_entity")
+  @@index([entity_id])
+}
+
+model tokens {
+  id_token     Int       @id @default(autoincrement())
+  user_id      Int
+  r_token      String    @db.VarChar(512)
+  access_token String?   @db.VarChar(512)
+  exec_token   String?   @db.VarChar(512)
+  revoked      Int       @default(0)
+  expires_at   DateTime?
+  status       String?   @db.VarChar(50)
+  active       Int       @default(1)
+  created_at   DateTime? @default(now()) @db.Timestamp(0)
+  users        users     @relation(fields: [user_id], references: [id_user], onDelete: Cascade)
+
+  @@index([r_token(length: 191)])
+  @@index([user_id])
 }
 
 model users {
-  id                 Int              @id @default(autoincrement())
-  email              String           @unique(map: "email") @db.VarChar(255)
-  password           String           @db.VarChar(255)
-  role_id            Int
-  entity_id          Int
-  spot_id            Int?
-  profile_id         Int?
-  is_active          Boolean?         @default(true)
-  is_email_confirmed Boolean?         @default(false)
-  last_login_at      DateTime?        @db.DateTime(0)
-  created_at         DateTime?        @default(now()) @db.Timestamp(0)
-  updated_at         DateTime?        @default(now()) @db.Timestamp(0)
-  refresh_tokens     refresh_tokens[]
-  entities           entities         @relation(fields: [entity_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "fk_user_entity")
-  profiles           profiles?        @relation(fields: [profile_id], references: [id], onUpdate: Restrict, map: "fk_user_profile")
-  roles              roles            @relation(fields: [role_id], references: [id], onUpdate: Restrict, map: "fk_user_role")
-  spots              spots?           @relation(fields: [spot_id], references: [id], onUpdate: Restrict, map: "fk_user_spot")
+  id_user       Int       @id @default(autoincrement())
+  email         String    @unique
+  password      String
+  role_id       Int
+  entity_id     Int
+  spot_id       Int?
+  profile_id    Int?
+  last_login_at DateTime?
+  created_at    DateTime? @default(now()) @db.Timestamp(0)
+  updated_at    DateTime? @default(now()) @db.Timestamp(0)
+  tokens        tokens[]
+  logs          logs[] // <-- back-relation hacia logs
+  entities      entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)
+  profiles      profiles? @relation(fields: [profile_id], references: [id_profile])
+  roles         roles     @relation(fields: [role_id], references: [id_role])
+  spots         spots?    @relation(fields: [spot_id], references: [id_spot])
+}
 
-  @@index([profile_id], map: "fk_user_profile")
-  @@index([role_id], map: "fk_user_role")
-  @@index([spot_id], map: "fk_user_spot")
-  @@index([email], map: "idx_user_email")
-  @@index([entity_id], map: "idx_user_entity")
+model logs {
+  id_log      Int       @id @default(autoincrement())
+  user_id     Int?
+  action      String    @db.VarChar(50)
+  description String?
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  users       users?    @relation(fields: [user_id], references: [id_user], onDelete: SetNull)
 }

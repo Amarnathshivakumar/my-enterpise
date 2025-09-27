@@ -1,47 +1,82 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   Controller,
   Post,
   Body,
-  Request,
+  Headers,
   UnauthorizedException,
   BadRequestException,
-  Headers,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
+
 class LoginDto {
   email: string;
   password: string;
 }
+
 class RegisterDto {
   email: string;
   password: string;
-  role_id: number;
   entity_id: number;
 }
+
+class StartDto {
+  entity: {
+    name: string;
+    type: string;
+    description: string;
+    number: string;
+    size: string;
+    logo_url: string;
+  };
+  user: {
+    email: string;
+    password: string;
+  };
+}
+
 class RefreshDto {
   r_token: string;
 }
+
 class RevokeDto {
   r_token: string;
 }
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @Post('login')
-  async login(@Body() body: LoginDto, @Request() req: any) {
+  async login(@Body() body: LoginDto) {
+    if (!body.email || !body.password)
+      throw new BadRequestException('Email and password required');
     const user = await this.authService.validateUser(body.email, body.password);
     if (!user) throw new UnauthorizedException('Invalid credentials');
-    const ip = req.ip || null;
-    const userAgentHeader = req.headers['user-agent'] || null;
-    return this.authService.login(user, ip, userAgentHeader);
+    return this.authService.login(user);
   }
   @Post('register')
   async register(@Body() body: RegisterDto) {
+    if (!body.email || !body.password || !body.entity_id)
+      throw new BadRequestException('All fields are required');
     return this.authService.register(body);
+  }
+  @Post('start')
+  async start(@Body() body: StartDto) {
+    const entityFields = [
+      'name',
+      'type',
+      'description',
+      'number',
+      'size',
+      'logo_url',
+    ];
+    for (const field of entityFields) {
+      if (!body.entity[field])
+        throw new BadRequestException(`Entity field '${field}' is required`);
+    }
+    if (!body.user.email || !body.user.password)
+      throw new BadRequestException('User email and password required');
+    return this.authService.start(body);
   }
   @Post('validate')
   async validate(@Headers('authorization') authHeader: string) {

@@ -93,18 +93,20 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 });
 
 exports.Prisma.EntitiesScalarFieldEnum = {
-  id: 'id',
+  id_entity: 'id_entity',
   name: 'name',
-  identifier: 'identifier',
-  address: 'address',
-  meta: 'meta',
+  type: 'type',
+  description: 'description',
+  number: 'number',
+  size: 'size',
+  logo_url: 'logo_url',
   active: 'active',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
 exports.Prisma.ProfilesScalarFieldEnum = {
-  id: 'id',
+  id_profile: 'id_profile',
   first_name: 'first_name',
   last_name: 'last_name',
   phone: 'phone',
@@ -114,20 +116,8 @@ exports.Prisma.ProfilesScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.Refresh_tokensScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  token: 'token',
-  revoked: 'revoked',
-  expires_at: 'expires_at',
-  created_at: 'created_at',
-  replaced_by_token: 'replaced_by_token',
-  ip: 'ip',
-  user_agent: 'user_agent'
-};
-
 exports.Prisma.RolesScalarFieldEnum = {
-  id: 'id',
+  id_role: 'id_role',
   name: 'name',
   description: 'description',
   created_at: 'created_at',
@@ -135,7 +125,7 @@ exports.Prisma.RolesScalarFieldEnum = {
 };
 
 exports.Prisma.SpotsScalarFieldEnum = {
-  id: 'id',
+  id_spot: 'id_spot',
   entity_id: 'entity_id',
   name: 'name',
   description: 'description',
@@ -144,19 +134,38 @@ exports.Prisma.SpotsScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.TokensScalarFieldEnum = {
+  id_token: 'id_token',
+  user_id: 'user_id',
+  r_token: 'r_token',
+  access_token: 'access_token',
+  exec_token: 'exec_token',
+  revoked: 'revoked',
+  expires_at: 'expires_at',
+  status: 'status',
+  active: 'active',
+  created_at: 'created_at'
+};
+
 exports.Prisma.UsersScalarFieldEnum = {
-  id: 'id',
+  id_user: 'id_user',
   email: 'email',
   password: 'password',
   role_id: 'role_id',
   entity_id: 'entity_id',
   spot_id: 'spot_id',
   profile_id: 'profile_id',
-  is_active: 'is_active',
-  is_email_confirmed: 'is_email_confirmed',
   last_login_at: 'last_login_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.LogsScalarFieldEnum = {
+  id_log: 'id_log',
+  user_id: 'user_id',
+  action: 'action',
+  description: 'description',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -171,9 +180,11 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.entitiesOrderByRelevanceFieldEnum = {
   name: 'name',
-  identifier: 'identifier',
-  address: 'address',
-  meta: 'meta'
+  type: 'type',
+  description: 'description',
+  number: 'number',
+  size: 'size',
+  logo_url: 'logo_url'
 };
 
 exports.Prisma.profilesOrderByRelevanceFieldEnum = {
@@ -182,13 +193,6 @@ exports.Prisma.profilesOrderByRelevanceFieldEnum = {
   phone: 'phone',
   avatar_url: 'avatar_url',
   bio: 'bio'
-};
-
-exports.Prisma.refresh_tokensOrderByRelevanceFieldEnum = {
-  token: 'token',
-  replaced_by_token: 'replaced_by_token',
-  ip: 'ip',
-  user_agent: 'user_agent'
 };
 
 exports.Prisma.rolesOrderByRelevanceFieldEnum = {
@@ -201,19 +205,32 @@ exports.Prisma.spotsOrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
+exports.Prisma.tokensOrderByRelevanceFieldEnum = {
+  r_token: 'r_token',
+  access_token: 'access_token',
+  exec_token: 'exec_token',
+  status: 'status'
+};
+
 exports.Prisma.usersOrderByRelevanceFieldEnum = {
   email: 'email',
   password: 'password'
+};
+
+exports.Prisma.logsOrderByRelevanceFieldEnum = {
+  action: 'action',
+  description: 'description'
 };
 
 
 exports.Prisma.ModelName = {
   entities: 'entities',
   profiles: 'profiles',
-  refresh_tokens: 'refresh_tokens',
   roles: 'roles',
   spots: 'spots',
-  users: 'users'
+  tokens: 'tokens',
+  users: 'users',
+  logs: 'logs'
 };
 /**
  * Create the Client
@@ -263,13 +280,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../prisma/client\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel entities {\n  id         Int       @id @default(autoincrement())\n  name       String    @db.VarChar(255)\n  identifier String    @unique(map: \"identifier\") @db.VarChar(100)\n  address    String?   @db.Text\n  meta       String?   @db.LongText\n  active     Boolean?  @default(true)\n  created_at DateTime? @default(now()) @db.Timestamp(0)\n  updated_at DateTime? @default(now()) @db.Timestamp(0)\n  spots      spots[]\n  users      users[]\n}\n\nmodel profiles {\n  id         Int       @id @default(autoincrement())\n  first_name String?   @db.VarChar(150)\n  last_name  String?   @db.VarChar(150)\n  phone      String?   @db.VarChar(50)\n  avatar_url String?   @db.VarChar(500)\n  bio        String?   @db.Text\n  created_at DateTime? @default(now()) @db.Timestamp(0)\n  updated_at DateTime? @default(now()) @db.Timestamp(0)\n  users      users[]\n}\n\nmodel refresh_tokens {\n  id                Int       @id @default(autoincrement())\n  user_id           Int\n  token             String    @db.VarChar(512)\n  revoked           Boolean?  @default(false)\n  expires_at        DateTime  @db.DateTime(0)\n  created_at        DateTime? @default(now()) @db.Timestamp(0)\n  replaced_by_token String?   @db.VarChar(512)\n  ip                String?   @db.VarChar(100)\n  user_agent        String?   @db.VarChar(500)\n  users             users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: \"fk_refresh_user\")\n\n  @@index([token(length: 191)], map: \"idx_refresh_token\")\n  @@index([user_id], map: \"idx_refresh_user\")\n}\n\nmodel roles {\n  id          Int       @id @default(autoincrement())\n  name        String    @unique(map: \"name\") @db.VarChar(50)\n  description String?   @db.VarChar(255)\n  created_at  DateTime? @default(now()) @db.Timestamp(0)\n  updated_at  DateTime? @default(now()) @db.Timestamp(0)\n  users       users[]\n}\n\nmodel spots {\n  id          Int       @id @default(autoincrement())\n  entity_id   Int\n  name        String    @db.VarChar(200)\n  description String?   @db.VarChar(255)\n  active      Boolean?  @default(true)\n  created_at  DateTime? @default(now()) @db.Timestamp(0)\n  updated_at  DateTime? @default(now()) @db.Timestamp(0)\n  entities    entities  @relation(fields: [entity_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: \"fk_spot_entity\")\n  users       users[]\n\n  @@index([entity_id], map: \"fk_spot_entity\")\n}\n\nmodel users {\n  id                 Int              @id @default(autoincrement())\n  email              String           @unique(map: \"email\") @db.VarChar(255)\n  password           String           @db.VarChar(255)\n  role_id            Int\n  entity_id          Int\n  spot_id            Int?\n  profile_id         Int?\n  is_active          Boolean?         @default(true)\n  is_email_confirmed Boolean?         @default(false)\n  last_login_at      DateTime?        @db.DateTime(0)\n  created_at         DateTime?        @default(now()) @db.Timestamp(0)\n  updated_at         DateTime?        @default(now()) @db.Timestamp(0)\n  refresh_tokens     refresh_tokens[]\n  entities           entities         @relation(fields: [entity_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: \"fk_user_entity\")\n  profiles           profiles?        @relation(fields: [profile_id], references: [id], onUpdate: Restrict, map: \"fk_user_profile\")\n  roles              roles            @relation(fields: [role_id], references: [id], onUpdate: Restrict, map: \"fk_user_role\")\n  spots              spots?           @relation(fields: [spot_id], references: [id], onUpdate: Restrict, map: \"fk_user_spot\")\n\n  @@index([profile_id], map: \"fk_user_profile\")\n  @@index([role_id], map: \"fk_user_role\")\n  @@index([spot_id], map: \"fk_user_spot\")\n  @@index([email], map: \"idx_user_email\")\n  @@index([entity_id], map: \"idx_user_entity\")\n}\n",
-  "inlineSchemaHash": "036cd12afd9b86bc89bde4fb75e029b9b1685ac10a32f7d738eec3c9621bf10f",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../prisma/client\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel entities {\n  id_entity   Int       @id @default(autoincrement())\n  name        String    @db.VarChar(255)\n  type        String    @db.VarChar(100)\n  description String?   @db.VarChar(255)\n  number      String?   @db.VarChar(50)\n  size        String?   @db.VarChar(50)\n  logo_url    String?   @db.VarChar(500)\n  active      Int       @default(1)\n  created_at  DateTime? @default(now()) @db.Timestamp(0)\n  updated_at  DateTime? @default(now()) @db.Timestamp(0)\n  spots       spots[]\n  users       users[]\n}\n\nmodel profiles {\n  id_profile Int       @id @default(autoincrement())\n  first_name String?   @db.VarChar(150)\n  last_name  String?   @db.VarChar(150)\n  phone      String?   @db.VarChar(50)\n  avatar_url String?   @db.VarChar(500)\n  bio        String?   @db.Text\n  created_at DateTime? @default(now()) @db.Timestamp(0)\n  updated_at DateTime? @default(now()) @db.Timestamp(0)\n  users      users[]\n}\n\nmodel roles {\n  id_role     Int       @id @default(autoincrement())\n  name        String    @unique @db.VarChar(50)\n  description String?   @db.VarChar(255)\n  created_at  DateTime? @default(now()) @db.Timestamp(0)\n  updated_at  DateTime? @default(now()) @db.Timestamp(0)\n  users       users[]\n}\n\nmodel spots {\n  id_spot     Int       @id @default(autoincrement())\n  entity_id   Int\n  name        String    @db.VarChar(200)\n  description String?   @db.VarChar(255)\n  active      Int       @default(1)\n  created_at  DateTime? @default(now()) @db.Timestamp(0)\n  updated_at  DateTime? @default(now()) @db.Timestamp(0)\n  entities    entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)\n  users       users[]\n\n  @@index([entity_id])\n}\n\nmodel tokens {\n  id_token     Int       @id @default(autoincrement())\n  user_id      Int\n  r_token      String    @db.VarChar(512)\n  access_token String?   @db.VarChar(512)\n  exec_token   String?   @db.VarChar(512)\n  revoked      Int       @default(0)\n  expires_at   DateTime?\n  status       String?   @db.VarChar(50)\n  active       Int       @default(1)\n  created_at   DateTime? @default(now()) @db.Timestamp(0)\n  users        users     @relation(fields: [user_id], references: [id_user], onDelete: Cascade)\n\n  @@index([r_token(length: 191)])\n  @@index([user_id])\n}\n\nmodel users {\n  id_user       Int       @id @default(autoincrement())\n  email         String    @unique\n  password      String\n  role_id       Int\n  entity_id     Int\n  spot_id       Int?\n  profile_id    Int?\n  last_login_at DateTime?\n  created_at    DateTime? @default(now()) @db.Timestamp(0)\n  updated_at    DateTime? @default(now()) @db.Timestamp(0)\n  tokens        tokens[]\n  logs          logs[] // <-- back-relation hacia logs\n  entities      entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)\n  profiles      profiles? @relation(fields: [profile_id], references: [id_profile])\n  roles         roles     @relation(fields: [role_id], references: [id_role])\n  spots         spots?    @relation(fields: [spot_id], references: [id_spot])\n}\n\nmodel logs {\n  id_log      Int       @id @default(autoincrement())\n  user_id     Int?\n  action      String    @db.VarChar(50)\n  description String?\n  created_at  DateTime? @default(now()) @db.Timestamp(0)\n  users       users?    @relation(fields: [user_id], references: [id_user], onDelete: SetNull)\n}\n",
+  "inlineSchemaHash": "f92f7483879e51730d9f2a73105f36137ce273dcc832ae97bac852feebcc84d2",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"entities\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"identifier\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"meta\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"spots\",\"kind\":\"object\",\"type\":\"spots\",\"relationName\":\"entitiesTospots\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"entitiesTousers\"}],\"dbName\":null},\"profiles\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bio\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"profilesTousers\"}],\"dbName\":null},\"refresh_tokens\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"revoked\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"replaced_by_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"ip\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user_agent\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"refresh_tokensTousers\"}],\"dbName\":null},\"roles\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"rolesTousers\"}],\"dbName\":null},\"spots\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"entity_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"entities\",\"kind\":\"object\",\"type\":\"entities\",\"relationName\":\"entitiesTospots\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"spotsTousers\"}],\"dbName\":null},\"users\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"entity_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"spot_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"profile_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"is_active\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"is_email_confirmed\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"last_login_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refresh_tokens\",\"kind\":\"object\",\"type\":\"refresh_tokens\",\"relationName\":\"refresh_tokensTousers\"},{\"name\":\"entities\",\"kind\":\"object\",\"type\":\"entities\",\"relationName\":\"entitiesTousers\"},{\"name\":\"profiles\",\"kind\":\"object\",\"type\":\"profiles\",\"relationName\":\"profilesTousers\"},{\"name\":\"roles\",\"kind\":\"object\",\"type\":\"roles\",\"relationName\":\"rolesTousers\"},{\"name\":\"spots\",\"kind\":\"object\",\"type\":\"spots\",\"relationName\":\"spotsTousers\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"entities\":{\"fields\":[{\"name\":\"id_entity\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"number\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"size\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logo_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"spots\",\"kind\":\"object\",\"type\":\"spots\",\"relationName\":\"entitiesTospots\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"entitiesTousers\"}],\"dbName\":null},\"profiles\":{\"fields\":[{\"name\":\"id_profile\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"first_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"last_name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"avatar_url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"bio\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"profilesTousers\"}],\"dbName\":null},\"roles\":{\"fields\":[{\"name\":\"id_role\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"rolesTousers\"}],\"dbName\":null},\"spots\":{\"fields\":[{\"name\":\"id_spot\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"entity_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"entities\",\"kind\":\"object\",\"type\":\"entities\",\"relationName\":\"entitiesTospots\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"spotsTousers\"}],\"dbName\":null},\"tokens\":{\"fields\":[{\"name\":\"id_token\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"r_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"access_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"exec_token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"revoked\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"expires_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"active\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"tokensTousers\"}],\"dbName\":null},\"users\":{\"fields\":[{\"name\":\"id_user\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"entity_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"spot_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"profile_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"last_login_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updated_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"tokens\",\"kind\":\"object\",\"type\":\"tokens\",\"relationName\":\"tokensTousers\"},{\"name\":\"logs\",\"kind\":\"object\",\"type\":\"logs\",\"relationName\":\"logsTousers\"},{\"name\":\"entities\",\"kind\":\"object\",\"type\":\"entities\",\"relationName\":\"entitiesTousers\"},{\"name\":\"profiles\",\"kind\":\"object\",\"type\":\"profiles\",\"relationName\":\"profilesTousers\"},{\"name\":\"roles\",\"kind\":\"object\",\"type\":\"roles\",\"relationName\":\"rolesTousers\"},{\"name\":\"spots\",\"kind\":\"object\",\"type\":\"spots\",\"relationName\":\"spotsTousers\"}],\"dbName\":null},\"logs\":{\"fields\":[{\"name\":\"id_log\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user_id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"action\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"created_at\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"users\",\"relationName\":\"logsTousers\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

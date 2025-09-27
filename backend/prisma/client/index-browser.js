@@ -121,18 +121,20 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 });
 
 exports.Prisma.EntitiesScalarFieldEnum = {
-  id: 'id',
+  id_entity: 'id_entity',
   name: 'name',
-  identifier: 'identifier',
-  address: 'address',
-  meta: 'meta',
+  type: 'type',
+  description: 'description',
+  number: 'number',
+  size: 'size',
+  logo_url: 'logo_url',
   active: 'active',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
 exports.Prisma.ProfilesScalarFieldEnum = {
-  id: 'id',
+  id_profile: 'id_profile',
   first_name: 'first_name',
   last_name: 'last_name',
   phone: 'phone',
@@ -142,20 +144,8 @@ exports.Prisma.ProfilesScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
-exports.Prisma.Refresh_tokensScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  token: 'token',
-  revoked: 'revoked',
-  expires_at: 'expires_at',
-  created_at: 'created_at',
-  replaced_by_token: 'replaced_by_token',
-  ip: 'ip',
-  user_agent: 'user_agent'
-};
-
 exports.Prisma.RolesScalarFieldEnum = {
-  id: 'id',
+  id_role: 'id_role',
   name: 'name',
   description: 'description',
   created_at: 'created_at',
@@ -163,7 +153,7 @@ exports.Prisma.RolesScalarFieldEnum = {
 };
 
 exports.Prisma.SpotsScalarFieldEnum = {
-  id: 'id',
+  id_spot: 'id_spot',
   entity_id: 'entity_id',
   name: 'name',
   description: 'description',
@@ -172,19 +162,38 @@ exports.Prisma.SpotsScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.TokensScalarFieldEnum = {
+  id_token: 'id_token',
+  user_id: 'user_id',
+  r_token: 'r_token',
+  access_token: 'access_token',
+  exec_token: 'exec_token',
+  revoked: 'revoked',
+  expires_at: 'expires_at',
+  status: 'status',
+  active: 'active',
+  created_at: 'created_at'
+};
+
 exports.Prisma.UsersScalarFieldEnum = {
-  id: 'id',
+  id_user: 'id_user',
   email: 'email',
   password: 'password',
   role_id: 'role_id',
   entity_id: 'entity_id',
   spot_id: 'spot_id',
   profile_id: 'profile_id',
-  is_active: 'is_active',
-  is_email_confirmed: 'is_email_confirmed',
   last_login_at: 'last_login_at',
   created_at: 'created_at',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.LogsScalarFieldEnum = {
+  id_log: 'id_log',
+  user_id: 'user_id',
+  action: 'action',
+  description: 'description',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {
@@ -199,9 +208,11 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.entitiesOrderByRelevanceFieldEnum = {
   name: 'name',
-  identifier: 'identifier',
-  address: 'address',
-  meta: 'meta'
+  type: 'type',
+  description: 'description',
+  number: 'number',
+  size: 'size',
+  logo_url: 'logo_url'
 };
 
 exports.Prisma.profilesOrderByRelevanceFieldEnum = {
@@ -210,13 +221,6 @@ exports.Prisma.profilesOrderByRelevanceFieldEnum = {
   phone: 'phone',
   avatar_url: 'avatar_url',
   bio: 'bio'
-};
-
-exports.Prisma.refresh_tokensOrderByRelevanceFieldEnum = {
-  token: 'token',
-  replaced_by_token: 'replaced_by_token',
-  ip: 'ip',
-  user_agent: 'user_agent'
 };
 
 exports.Prisma.rolesOrderByRelevanceFieldEnum = {
@@ -229,19 +233,32 @@ exports.Prisma.spotsOrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
+exports.Prisma.tokensOrderByRelevanceFieldEnum = {
+  r_token: 'r_token',
+  access_token: 'access_token',
+  exec_token: 'exec_token',
+  status: 'status'
+};
+
 exports.Prisma.usersOrderByRelevanceFieldEnum = {
   email: 'email',
   password: 'password'
+};
+
+exports.Prisma.logsOrderByRelevanceFieldEnum = {
+  action: 'action',
+  description: 'description'
 };
 
 
 exports.Prisma.ModelName = {
   entities: 'entities',
   profiles: 'profiles',
-  refresh_tokens: 'refresh_tokens',
   roles: 'roles',
   spots: 'spots',
-  users: 'users'
+  tokens: 'tokens',
+  users: 'users',
+  logs: 'logs'
 };
 
 /**
