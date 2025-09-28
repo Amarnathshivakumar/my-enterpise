@@ -3,13 +3,13 @@
  * =====================================================
  *  NAME    : Register.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 27/09/25
+ *  DATE_MODIFY       : 28/09/25
  *  DESCRIPTION: REGISTER PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -37,6 +37,11 @@ type RegisterProps = { t: (key: string) => string };
 
 // PAGE
 const Register: React.FC<RegisterProps> = ({ t }) => {
+  const [fadeIn, setFadeIn] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setFadeIn(true), 50);
+    return () => clearTimeout(timeout);
+  }, []);
   const registerSchema = z.object({
     name: z.string().min(1, { message: t("register.nameRequired") }),
     email: z.string().email({ message: t("register.emailInvalid") }),
@@ -99,7 +104,7 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
       window.location.href = "/login";
     } catch (err) {
       console.error(err);
-      alert(`Intenta nuevamente || ${err}`);
+      alert(`Try Again || ${err}`);
     }
   };
   const handleLoginClick = () => {
@@ -107,7 +112,11 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
   };
   return (
     <main className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-2xl">
+      <div
+        className={`w-full max-w-2xl transform transition-opacity duration-800 ease-out ${
+          fadeIn ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

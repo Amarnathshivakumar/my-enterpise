@@ -2,13 +2,13 @@
  * =====================================================
  *  NAME    : Section3.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 26/09/2025
+ *  DATE_MODIFY       : 27/09/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -18,6 +18,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Layers, Code2, Users, ShieldCheck, Server } from "lucide-react";
+import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
 
 // LOGIC
 type Section3Props = {
@@ -34,15 +35,43 @@ const iconMap = {
 // SECTION 2
 const Section3: React.FC<Section3Props> = ({ t }) => {
   const cards = ["card1", "card2", "card3", "card4", "card5"];
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            cards.forEach((_, index) => {
+              setTimeout(() => {
+                setVisibleCards((prev) => [...prev, index]);
+              }, index * 200); // 200ms entre tarjetas
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
   return (
-    <section className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12">
+    <section
+      ref={sectionRef}
+      className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12"
+    >
       <article className="flex flex-col text-center items-center space-y-8 z-10 w-full h-full">
-        <h4 className="font-bold text-3xl sm:text-4xl lg:text-6xl">
-          {t("home.text-5")}
-        </h4>
-        <p className="text-base sm:text-lg lg:text-2xl font-light max-w-3xl">
-          {t("home.text-6")}
-        </p>
+        <AnimateOnScroll>
+          <h4 className="font-bold text-3xl sm:text-4xl lg:text-6xl">
+            {t("home.text-5")}
+          </h4>
+        </AnimateOnScroll>
+        <AnimateOnScroll>
+          <p className="text-base sm:text-lg lg:text-2xl font-light max-w-3xl">
+            {t("home.text-6")}
+          </p>
+        </AnimateOnScroll>
       </article>
       <div className="w-full overflow-hidden">
         <Carousel className="w-full max-w-6xl mx-auto relative">
@@ -52,8 +81,14 @@ const Section3: React.FC<Section3Props> = ({ t }) => {
                 key={index}
                 className="pl-2 basis-full sm:basis-1/2 lg:basis-1/3"
               >
-                <div className="p-2 h-full">
-                  <Card className="h-full shadow-lg hover:shadow-xl transition rounded-2xl">
+                <div
+                  className={`p-2 h-full transition-all duration-700 ease-out transform ${
+                    visibleCards.includes(index)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-10"
+                  }`}
+                >
+                  <Card className="h-full shadow-lg hover:shadow-xl rounded-2xl">
                     <CardContent className="flex flex-col items-start justify-start p-6 space-y-4">
                       <div className="w-14 h-14 flex items-center justify-center rounded-full bg-primary/10">
                         {iconMap[cardKey as keyof typeof iconMap]}

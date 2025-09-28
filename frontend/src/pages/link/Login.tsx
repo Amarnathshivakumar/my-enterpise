@@ -4,13 +4,13 @@
  * =====================================================
  *  NAME    : Login.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 27/09/25
+ *  DATE_MODIFY       : 28/09/25
  *  DESCRIPTION: LOGIN PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -34,6 +34,11 @@ type LoginProps = {
 
 // PAGE
 const Login: React.FC<LoginProps> = ({ t }) => {
+  const [fadeIn, setFadeIn] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => setFadeIn(true), 50);
+    return () => clearTimeout(timeout);
+  }, []);
   const loginSchema = z.object({
     email: z.string().email({ message: t("login.emailInvalid") }),
     password: z.string().min(6, { message: t("login.passwordMinLength") }),
@@ -50,8 +55,8 @@ const Login: React.FC<LoginProps> = ({ t }) => {
     const body = {
       action: "login",
       data: {
-          email: values.email,
-          password: values.password,
+        email: values.email,
+        password: values.password,
       },
     };
     try {
@@ -68,7 +73,7 @@ const Login: React.FC<LoginProps> = ({ t }) => {
       window.location.href = "/";
     } catch (err) {
       console.error(err);
-      alert(`Intenta nuevamente || ${err}`);
+      alert(`Try Again || ${err}`);
     }
   };
   const handleRegisterClick = () => {
@@ -76,7 +81,11 @@ const Login: React.FC<LoginProps> = ({ t }) => {
   };
   return (
     <main className=" min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+      <div
+        className={`w-full max-w-md transform transition-opacity duration-800 ease-out ${
+          fadeIn ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

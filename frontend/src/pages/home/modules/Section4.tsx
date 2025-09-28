@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Section4.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 25/09/2025
+ *  DATE_MODIFY       : 27/09/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
@@ -10,6 +10,7 @@
 // DEPENDENCIES
 import React from "react";
 import { Check } from "lucide-react";
+import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
 
 // LOGIC
 type Section4Props = {
@@ -77,19 +78,19 @@ const Section4: React.FC<Section4Props> = ({ t }) => {
               <h6 className="font-semibold text-white mb-4 text-lg md:text-xl">
                 Frontend
               </h6>
-              {renderTechList(frontendArray)}
+              <AnimateOnScroll>{renderTechList(frontendArray)}</AnimateOnScroll>
             </div>
             <div className="p-6 bg-white/20 rounded-xl shadow-lg hover:bg-white/30 transition-all">
               <h6 className="font-semibold text-white mb-4 text-lg md:text-xl">
                 Backend
               </h6>
-              {renderTechList(backendArray)}
+              <AnimateOnScroll>{renderTechList(backendArray)}</AnimateOnScroll>
             </div>
             <div className="p-6 bg-white/20 rounded-xl shadow-lg hover:bg-white/30 transition-all">
               <h6 className="font-semibold text-white mb-4 text-lg md:text-xl">
                 Database
               </h6>
-              {renderTechList(databaseArray)}
+              <AnimateOnScroll>{renderTechList(databaseArray)}</AnimateOnScroll>
             </div>
           </div>
         </div>

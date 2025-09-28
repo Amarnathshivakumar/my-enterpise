@@ -24,7 +24,7 @@ const Register = lazy(() => import("@/pages/link/Register"));
 const Dashboard = lazy(() => import("@/pages/client/Dashboard"));
 
 // ROUTES
-export const Router: React.FC = () => {
+export const Router = () => {
   const { t } = useTranslation();
   const routes = [
     { path: "/", element: <Home t={t} /> },

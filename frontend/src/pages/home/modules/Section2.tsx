@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Section2.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 25/09/2025
+ *  DATE_MODIFY       : 27/09/2025
  *  DESCRIPTION: SECTION 2 FOR HOME PAGE
  * =====================================================
  */
@@ -10,6 +10,7 @@
 // DEPENDENCIES
 import React from "react";
 import { Button } from "@/components/ui/button";
+import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
 
 // LOGIC
 type Section2Props = {
@@ -31,11 +32,13 @@ const Section2: React.FC<Section2Props> = ({ t }) => {
         </Button>
       </article>
       <div className="bg-gray-950 dark:bg-white/10 z-1">
-        <img
-          src="/img/img-1.png"
-          alt="image"
-          className="w-full h-full object-contain dark:invert-90 dark:opacity-60"
-        />
+        <AnimateOnScroll>
+          <img
+            src="/img/img-1.png"
+            alt="image"
+            className="w-full h-full object-contain dark:invert-90 dark:opacity-60"
+          />
+        </AnimateOnScroll>
       </div>
     </section>
   );
