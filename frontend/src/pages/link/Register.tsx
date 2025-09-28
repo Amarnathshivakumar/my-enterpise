@@ -106,15 +106,15 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
     window.location.href = "/login";
   };
   return (
-    <main className="bg-gray-100 min-h-screen flex items-center justify-center px-4">
+    <main className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-2xl">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="bg-white p-6 sm:p-10 rounded-3xl shadow-xl space-y-6"
+            className="p-6 sm:p-10 rounded-3xl shadow-xl space-y-6 dark:border-gray-950 border-2"
           >
             <div className="text-center space-y-1">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl font-extrabold">
                 {t("register.title")}
               </h1>
               <p className="text-gray-500 text-sm sm:text-base">

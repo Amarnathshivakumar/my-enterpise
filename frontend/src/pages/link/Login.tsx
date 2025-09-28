@@ -75,14 +75,14 @@ const Login: React.FC<LoginProps> = ({ t }) => {
     window.location.href = "/register";
   };
   return (
-    <main className="bg-gray-100 min-h-screen flex items-center justify-center px-4">
+    <main className=" min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 bg-white p-8 rounded-3xl shadow-xl sm:p-10"
+            className="space-y-6 p-8 rounded-3xl shadow-xl sm:p-10 dark:border-gray-950 border-2"
           >
-            <h1 className="text-3xl font-extrabold text-center text-gray-900">
+            <h1 className="text-3xl font-extrabold text-center">
               {t("login.title")}
             </h1>
             <FormField
