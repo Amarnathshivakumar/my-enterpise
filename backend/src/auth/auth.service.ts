@@ -83,8 +83,6 @@ export class AuthService {
     user: {
       email: string;
       password: string;
-      spot_id?: number;
-      profile_id?: number;
       last_login_at?: Date;
     };
   }) {
@@ -97,13 +95,15 @@ export class AuthService {
       'size',
       'logo_url',
     ];
-    for (const field of entityFields)
+    for (const field of entityFields) {
       if (!entity[field])
         throw new BadRequestException(`Entity field '${field}' is required`);
+    }
     const userFields = ['email', 'password'];
-    for (const field of userFields)
+    for (const field of userFields) {
       if (!user[field])
         throw new BadRequestException(`User field '${field}' is required`);
+    }
     if (user.password.length < 8)
       throw new BadRequestException('Password must be at least 8 characters');
     const existsUser = await this.prisma.users.findUnique({
@@ -113,12 +113,19 @@ export class AuthService {
     const existingEntity = await this.prisma.entities.findFirst({
       where: { name: entity.name },
     });
-    if (existingEntity) {
+    if (existingEntity)
       throw new BadRequestException('Entity with this name already exists');
-    }
     const newEntity = await this.prisma.entities.create({
       data: { ...entity },
     });
+    const newSpot = await this.prisma.spots.create({
+      data: {
+        entity_id: newEntity.id_entity,
+        name: 'Startup',
+        description: newEntity.name,
+      },
+    });
+    const newProfile = await this.prisma.profiles.create({ data: {} });
     const hashed = await bcrypt.hash(user.password, 10);
     const newUser = await this.prisma.users.create({
       data: {
@@ -126,8 +133,8 @@ export class AuthService {
         password: hashed,
         role_id: 3,
         entity_id: newEntity.id_entity,
-        spot_id: user.spot_id || null,
-        profile_id: user.profile_id || null,
+        spot_id: newSpot.id_spot,
+        profile_id: newProfile.id_profile,
         last_login_at: user.last_login_at || null,
       },
     });
@@ -135,9 +142,14 @@ export class AuthService {
     await this.logAction(
       newUser.id_user,
       'start',
-      `User created and entity '${newEntity.name}' created`,
+      `User created with entity '${newEntity.name}' and startup spot`,
     );
-    return { entity: newEntity, user: resultUser };
+    return {
+      entity: newEntity,
+      spot: newSpot,
+      profile: newProfile,
+      user: resultUser,
+    };
   }
 
   async login(user: Omit<users, 'password'>) {

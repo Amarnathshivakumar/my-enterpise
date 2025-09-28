@@ -65,6 +65,7 @@
   },
   "register": {
     "title": "Regístrate",
+    "subtitle": "Registrate para acceder a los servicios gratis",
     "nameLabel": "Nombre de la entidad",
     "namePlaceholder": "Test Individual",
     "emailLabel": "Email",

@@ -65,6 +65,7 @@
   },
   "register": {
     "title": "Register",
+    "subtitle": "Register for access services free",
     "nameLabel": "Name Entitie",
     "namePlaceholder": "My Enterpise",
     "emailLabel": "Email",

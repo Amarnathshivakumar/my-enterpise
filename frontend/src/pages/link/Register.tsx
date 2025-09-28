@@ -41,7 +41,7 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
     email: z.string().email({ message: t("register.emailInvalid") }),
     password: z.string().min(6, { message: t("register.passwordMinLength") }),
     type: z.enum(["individual", "group", "enterprise"]),
-    size: z.number().min(1).max(50),
+    size: z.coerce.number().min(1).max(50),
     description: z.string().optional(),
     number: z.string().optional(),
     logo_url: z.string().optional(),
@@ -93,110 +93,135 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      const data = await res.json();
-      console.log("Register response:", data);
+      if (!res.ok) throw new Error("Error en el registro");
+      alert("Registro exitoso. Ahora serás redirigido a la página de login.");
+      window.location.href = "/login";
     } catch (err) {
       console.error(err);
+      alert(`Intenta nuevamente || ${err}`);
     }
   };
   return (
     <main className="bg-gray-100 min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-2xl">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 bg-white p-8 rounded-3xl shadow-xl sm:p-10"
+            className="bg-white p-6 sm:p-10 rounded-3xl shadow-xl space-y-6"
           >
-            <h1 className="text-3xl font-extrabold text-center text-gray-900">
-              {t("register.title")}
-            </h1>
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("register.nameLabel")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("register.namePlaceholder")}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("register.emailLabel")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("register.emailPlaceholder")}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("register.passwordLabel")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder={t("register.passwordPlaceholder")}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormItem>
-              <FormLabel>{t("register.typeLabel")}</FormLabel>
-              <FormControl>
-                <Controller
-                  control={form.control}
-                  name="type"
-                  render={({ field }) => (
-                    <Select
-                      onValueChange={(val) => field.onChange(val)}
-                      value={field.value}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="individual">Individual</SelectItem>
-                        <SelectItem value="group">Group</SelectItem>
-                        <SelectItem value="enterprise">Enterprise</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  )}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-            <FormField
-              control={form.control}
-              name="size"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("register.sizeLabel")}</FormLabel>
-                  <FormControl>
-                    <Input type="number" {...field} {...getSizeProps()} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="text-center space-y-1">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+                {t("register.title")}
+              </h1>
+              <p className="text-gray-500 text-sm sm:text-base">
+                {t("register.subtitle")}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("register.nameLabel")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={t("register.namePlaceholder")}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("register.emailLabel")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={t("register.emailPlaceholder")}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("register.passwordLabel")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder={t("register.passwordPlaceholder")}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormItem>
+                <FormLabel>{t("register.typeLabel")}</FormLabel>
+                <FormControl>
+                  <Controller
+                    control={form.control}
+                    name="type"
+                    render={({ field }) => (
+                      <Select
+                        onValueChange={(val) => field.onChange(val)}
+                        value={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="individual">Individual</SelectItem>
+                          <SelectItem value="group">Group</SelectItem>
+                          <SelectItem value="enterprise">Enterprise</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+              <FormField
+                control={form.control}
+                name="size"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("register.sizeLabel")}</FormLabel>
+                    <FormControl>
+                      <Input type="number" {...field} {...getSizeProps()} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("register.numberLabel")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={t("register.numberPlaceholder")}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="description"
@@ -213,23 +238,10 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="number"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("register.numberLabel")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("register.numberPlaceholder")}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full py-3 text-lg font-semibold">
+            <Button
+              type="submit"
+              className="w-full py-3 text-lg font-semibold rounded-2xl"
+            >
               {t("register.submitButton")}
             </Button>
           </form>
