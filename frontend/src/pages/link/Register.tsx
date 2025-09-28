@@ -30,6 +30,7 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, useWatch } from "react-hook-form";
+import { Gavel } from "lucide-react";
 
 // LOGIC
 type RegisterProps = { t: (key: string) => string };
@@ -100,6 +101,9 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
       console.error(err);
       alert(`Intenta nuevamente || ${err}`);
     }
+  };
+  const handleLoginClick = () => {
+    window.location.href = "/login";
   };
   return (
     <main className="bg-gray-100 min-h-screen flex items-center justify-center px-4">
@@ -240,9 +244,23 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
             />
             <Button
               type="submit"
-              className="w-full py-3 text-lg font-semibold rounded-2xl"
+              className="w-full py-3 text-lg font-semibold rounded-2xl cursor-pointer"
             >
               {t("register.submitButton")}
+            </Button>
+            <div className="flex items-center my-4">
+              <span className="flex-grow h-px bg-gray-300"></span>
+              <span className="mx-2 text-gray-500 font-medium">o</span>
+              <span className="flex-grow h-px bg-gray-300"></span>
+            </div>
+            <Button
+              type="button"
+              onClick={handleLoginClick}
+              variant="outline"
+              className="w-full py-3 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Gavel className="w-5 h-5" />
+              {t("login.title")}
             </Button>
           </form>
         </Form>

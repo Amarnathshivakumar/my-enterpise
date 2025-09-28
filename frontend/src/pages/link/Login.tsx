@@ -107,7 +107,10 @@ const Login: React.FC<LoginProps> = ({ t }) => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full py-3 text-lg font-semibold">
+            <Button
+              type="submit"
+              className="w-full py-3 text-lg font-semibold cursor-pointer"
+            >
               {t("login.submitButton")}
             </Button>
             <div className="flex items-center my-4">
@@ -119,7 +122,7 @@ const Login: React.FC<LoginProps> = ({ t }) => {
               type="button"
               onClick={handleRegisterClick}
               variant="outline"
-              className="w-full py-3 flex items-center justify-center gap-2"
+              className="w-full py-3 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Gavel className="w-5 h-5" />
               {t("login.register")}
