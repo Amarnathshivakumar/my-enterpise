@@ -1,10 +1,9 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
+about: Use te template down
+title: 'Small'
+labels: 'No required'
+assignees: 'No required'
 ---
 
 **Is your feature request related to a problem? Please describe.**
