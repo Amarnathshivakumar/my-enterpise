@@ -11,6 +11,7 @@
 import { lazy, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import ProtectedRoute from "@/router/ProtectedRoute";
+import PublicRouter from "@/router/PublicRouter";
 import { useTranslation } from "react-i18next";
 import "../assets/css/loading.css";
 import Loading from "@/components/containers/Loading";
@@ -27,7 +28,14 @@ export const Router: React.FC = () => {
   const { t } = useTranslation();
   const routes = [
     { path: "/", element: <Home t={t} /> },
-    { path: "/login", element: <Login t={t} /> },
+    {
+      path: "/login",
+      element: (
+        <PublicRouter requireBothTokens={true}>
+          <Login t={t} />
+        </PublicRouter>
+      ),
+    },
     { path: "/register", element: <Register t={t} /> },
     {
       path: "/dashboard",

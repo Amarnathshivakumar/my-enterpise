@@ -1,6 +1,6 @@
 /**
  * =====================================================
- *  NAME    : PrivateRouter.tsx
+ *  NAME    : PublicRouter.tsx
  *  DATE      : 27/09/2025
  *  DATE_MODIFY       : 27/09/25
  *  DESCRIPTION: ROUTER VALIDATION FOR COMPONETS , DEFAULT FALSE BACKEND
@@ -15,17 +15,18 @@ import "../assets/css/loading.css";
 import Loading from "@/components/containers/Loading";
 
 // LOGIC
-type ProtectedRouteProps = {
+type Props = {
   children: React.ReactNode;
   requireBothTokens?: boolean;
 };
 
-// PRIVATE ROUTER
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+// PUBLIC ROUTER
+const PublicRouter: React.FC<Props> = ({
   children,
   requireBothTokens = false,
 }) => {
-  const [isValid, setIsValid] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const validateToken = async (token: string) => {
     try {
       const res = await fetch("http://localhost:3001/auth/action", {
@@ -33,20 +34,19 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "validate", data: token }),
       });
-      if (!res.ok) throw new Error("Error validando token");
+      if (!res.ok) return false;
       const data = await res.json();
       return data.valid;
-    } catch (err) {
-      console.error(err);
+    } catch {
       return false;
     }
   };
   useEffect(() => {
-    const checkTokens = async () => {
+    const checkLogin = async () => {
       const access_token = localStorage.getItem("access_token");
       const r_token = localStorage.getItem("r_token");
       if (!access_token || !r_token) {
-        setIsValid(false);
+        setIsLoading(false);
         return;
       }
       try {
@@ -54,29 +54,28 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         const rDecoded: any = jwtDecode(r_token);
         const now = Date.now() / 1000;
         if (accessDecoded.exp < now || rDecoded.exp < now) {
-          setIsValid(false);
+          setIsLoading(false);
           return;
         }
       } catch {
-        setIsValid(false);
+        setIsLoading(false);
         return;
       }
       if (requireBothTokens) {
         const validAccess = await validateToken(access_token);
         const validR = await validateToken(r_token);
-        setIsValid(validAccess && validR);
+        setIsLoggedIn(validAccess && validR);
       } else {
-        setIsValid(true);
+        setIsLoggedIn(true);
       }
+      setIsLoading(false);
     };
-    checkTokens();
+    checkLogin();
   }, [requireBothTokens]);
-  if (isValid === null) {
-    return <Loading />;
-  }
-  if (!isValid) {
-    return <Navigate to="/login" replace />;
+  if (isLoading) return <Loading />;
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" replace />;
   }
   return <>{children}</>;
 };
-export default ProtectedRoute;
+export default PublicRouter;
