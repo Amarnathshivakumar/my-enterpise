@@ -94,7 +94,7 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error("Error en el registro");
+      if (!res.ok) throw new Error("Datos no validos");
       alert("Registro exitoso. Ahora serás redirigido a la página de login.");
       window.location.href = "/login";
     } catch (err) {

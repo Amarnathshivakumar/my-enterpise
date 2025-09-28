@@ -46,8 +46,30 @@ const Login: React.FC<LoginProps> = ({ t }) => {
       password: "",
     },
   });
-  const onSubmit = (values: LoginFormValues) => {
-    console.log("Login data:", values);
+  const onSubmit = async (values: LoginFormValues) => {
+    const body = {
+      action: "login",
+      data: {
+          email: values.email,
+          password: values.password,
+      },
+    };
+    try {
+      const res = await fetch("http://localhost:3001/auth/action", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) throw new Error("Credenciales Invalidas");
+      const data = await res.json();
+      console.table(data);
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("r_token", data.r_token);
+      window.location.href = "/";
+    } catch (err) {
+      console.error(err);
+      alert(`Intenta nuevamente || ${err}`);
+    }
   };
   const handleRegisterClick = () => {
     window.location.href = "/register";
